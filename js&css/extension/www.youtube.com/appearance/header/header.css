@@ -106,13 +106,17 @@ html[it-header-position=static] ytd-page-manager#page-manager {
 	margin-top: 0;
 }
 
+/* Adjustments for "Show only on hover" to ensure header fully collapses when not hovered */
 html[it-header-position=hover]:not([it-improvedtube-search=true]) #masthead-container,
 html[data-page-type='video'][it-header-position=hover_on_video_page]:not([it-improvedtube-search=true]) #masthead-container {
 	transition: all 320ms ease-in-out;
-	transform: translateY(-38%);
-	height: 68px;
+	transform: translateY(-100%); /* Move completely off-screen */
+	max-height: 0; /* Collapse vertical space */
+	overflow: hidden; /* Hide any overflow */
 	opacity: 0;
-	backdrop-filter: blur(4px);
+	border: none !important; /* Ensure no residual borders */
+	box-shadow: none !important; /* Ensure no residual shadows */
+	backdrop-filter: none !important; /* Explicitly remove backdrop-filter when hidden */
 }
 
 html[it-header-position=hidden] #masthead-container:not([it-search-focus=true]):focus-within,
@@ -131,6 +135,17 @@ html[data-page-type='video'][it-header-position=hover_on_video_page] #masthead-c
 html[data-page-type='video'][it-header-position=hover_on_video_page][it-search-focus=true] #masthead-container #background {
 	transform: translateY(0%);
 	opacity: 1 !important;
+}
+
+/* On hover, restore max-height and apply backdrop-filter to the container */
+html[it-header-position=hover] #masthead-container:hover,
+html[it-header-position=hover] #masthead-container:focus-within,
+html[it-header-position=hover][it-search-focus=true] #masthead-container,
+html[data-page-type='video'][it-header-position=hover_on_video_page] #masthead-container:hover,
+html[data-page-type='video'][it-header-position=hover_on_video_page] #masthead-container:focus-within,
+html[data-page-type='video'][it-header-position=hover_on_video_page][it-search-focus=true] #masthead-container {
+    max-height: 999px; /* Allow it to expand to its natural height */
+    backdrop-filter: blur(4px); /* Apply backdrop-filter when visible */
 }
 
 html[it-header-position=static] .ytd-app:not([masthead-hidden_]) #masthead-container {
