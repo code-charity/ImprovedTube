@@ -352,6 +352,15 @@ extension.features.font = function (changed) {
 --------------------------------------------------------------*/
 
 extension.features.markWatchedVideos = function (anything) {
+	function hideWatchedVideos(){
+		var watchedVideos = document.querySelectorAll('.it-mark-watched-videos[watched]');
+		watchedVideos.forEach(video => {
+			var videoContainer = video.closest('ytd-grid-video-renderer, ytd-video-renderer');
+			if (videoContainer) {
+				videoContainer.style.display = 'none'; // Hide watched videos
+			}
+		});
+	}
 	if (anything instanceof Event) {
 		var event = anything;
 
