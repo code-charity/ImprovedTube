@@ -282,6 +282,13 @@ ImprovedTube.pageType = function () {
 		document.documentElement.dataset.pageType = 'embed';
 	} else if (location.pathname === '/') {
 		document.documentElement.dataset.pageType = 'home';
+
+		// Safeguard to prevent infinite reloads
+		if (ImprovedTube.initializedHomePage) {
+			console.warn('ImprovedTube: Home page already initialized. Skipping redundant operations.');
+			return;
+		}
+		ImprovedTube.initializedHomePage = true;
 	} else if (/\/subscriptions\?/.test(location.href)) {
 		document.documentElement.dataset.pageType = 'subscriptions';
 	} else if (/\/@|(\/(channel|user|c)\/)[^/]+/.test(location.href)) {
@@ -362,7 +369,7 @@ ImprovedTube.videoPageUpdate = function () {
 };
 
 ImprovedTube.playerOnPlay = function () {
-	HTMLMediaElement.prototype.play = (function (original) {
+	HTMLMediaElement.prototype.play = (function (original) {t
 		return function () {
 			// Avoid attaching full player handlers to inline/thumbnail preview players
 			// (YouTube uses different preview elements such as `ytd-video-preview`).

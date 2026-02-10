@@ -265,6 +265,11 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 			break
 
 		case 'tab-connected':
+			// Skip handling if the main page is already initialized
+			if (sender.tab.url === 'https://www.youtube.com/' && ImprovedTube.initializedHomePage) {
+				console.warn('ImprovedTube: Skipping redundant tab connection for the main page.');
+				return;
+			}
 			tabConnected[sender.tab.id] = true;
 			sendResponse({
 				tabId: sender.tab.id
