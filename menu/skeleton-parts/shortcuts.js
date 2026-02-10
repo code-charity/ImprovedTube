@@ -143,9 +143,10 @@ extension.skeleton.main.layers.section.shortcuts = {
 									component: 'shortcut',
 									text: 'increasePlaybackSpeed',
 									value: {
+										shift: true,
 										keys: {
-											188: {
-												key: '<'
+											190: {
+												key: '>'
 											}
 										}
 									}
@@ -154,9 +155,10 @@ extension.skeleton.main.layers.section.shortcuts = {
 									component: 'shortcut',
 									text: 'decreasePlaybackSpeed',
 									value: {
+										shift: true,
 										keys: {
-											190: {
-												key: '>'
+											188: {
+												key: '<'
 											}
 										}
 									}
@@ -164,6 +166,15 @@ extension.skeleton.main.layers.section.shortcuts = {
 								shortcut_reset_playback_speed: {
 									component: 'shortcut',
 									text: 'reset'
+								},
+								shortcut_playback_message: {
+									component: 'text',
+									text: 'You may have to manually reset each keybind individually', 
+									style: {
+										marginTop: '10px',  
+										color: '#888',
+										textAlign: 'center'
+									}
 								}
 							}
 						}
