@@ -15,6 +15,18 @@ extension.features.comments = function (anything) {
 		if (event.type === 'click') {
 			var target = event.target;
 
+			//Prevent misclick
+			let node = target;
+			while (node && node !== document) {
+				if (node.tagName === "A" && node.id === "author-text") {
+					event.preventDefault();
+					event.stopPropagation();
+					// console.log("blocks click on username in comments");
+					return;
+				}
+				node = node.parentNode;
+			}
+
 			if (target.nodeName === 'YTD-COMMENTS-HEADER-RENDERER') {
 				var rect = target.getBoundingClientRect();
 
