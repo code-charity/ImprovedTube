@@ -155,34 +155,34 @@ ImprovedTube.formatSecond = function (rTime) {
 };
 
 ImprovedTube.playerRemainingDuration = function () {
-	const liveBadge = document.querySelector('button.ytp-live-badge.ytp-button.ytp-live-badge-is-livehead');
-	if (liveBadge) return;
+    const liveBadge = document.querySelector(
+        'button.ytp-live-badge.ytp-button.ytp-live-badge-is-livehead'
+    );
+    if (liveBadge) return;
 
-	const currentEl = document.querySelector('.ytp-time-current');
-	const durationEl = document.querySelector('.ytp-time-duration');
+    const currentEl = document.querySelector('.ytp-time-current');
+    const durationEl = document.querySelector('.ytp-time-duration');
+    if (!currentEl || !durationEl) return;
 
-	if (!currentEl || !durationEl) return;
+    const player = ImprovedTube.elements.player;
+    if (!player) return;
 
-	const player = ImprovedTube.elements.player;
-	if (!player) return;
+    const currentTime = player.getCurrentTime();
+    const duration = player.getDuration();
+    if (!isFinite(duration) || !isFinite(currentTime) || duration <= 0) return;
 
-	const currentTime = player.getCurrentTime();
-	const duration = player.getDuration();
+    const remainingSeconds = Math.max(0, duration - currentTime);
+    const rTime = ImprovedTube.formatSecond(Math.floor(remainingSeconds));
+    if (!rTime || rTime.includes('NaN')) return;
 
-	if (!isFinite(duration) || !isFinite(currentTime) || duration <= 0) return;
+    // Save original duration ONCE (clean version)
+    if (!durationEl.dataset.itOriginal) {
+        durationEl.dataset.itOriginal = durationEl.textContent.trim();
+    }
 
-	const remainingSeconds = Math.max(0, duration - currentTime);
-	const rTime = ImprovedTube.formatSecond(Math.floor(remainingSeconds));
-	
-	if (!rTime || rTime.includes('NaN')) return;
-
-	if (!durationEl.dataset.itOriginal) {
-		durationEl.dataset.itOriginal = durationEl.textContent;
-	}
-
-	// Overwrite text 
-	durationEl.textContent =
-		durationEl.dataset.itOriginal + '  (-' + rTime + ')';
+    // Always reset to original and append remaining time
+    durationEl.textContent =
+        `${durationEl.dataset.itOriginal} (-${rTime})`;
 };
 
 
