@@ -19,6 +19,10 @@
 --------------------------------------------------------------*/
 
 extension.features.youtubeHomePage = function (anything) {
+	    // Guard: prevent errors when DOM or event is not ready
+    if (!anything || typeof document === 'undefined' || !document.body) {
+    return;
+}
 	if (anything instanceof Event) {
 		var event = anything;
 
