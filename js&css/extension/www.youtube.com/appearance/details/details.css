@@ -54,10 +54,10 @@ html[it-hide-dislike-button='icons_only'] #top-level-buttons-computed #segmented
 	/*------# HIDE SHARE BUTTON------*/
 html[it-hide-share-button='hidden'] #menu yt-button-view-model:has(svg path[d^="M10 3.158V7.51c"]),
 html[it-hide-share-button='hidden'] #flexible-item-buttons yt-button-view-model:has(svg path[d^="M10 3.158V7.51c"]),
-html[it-hide-share-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M10 3.158V7.51c"]),
+/* html[it-hide-share-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M10 3.158V7.51c"]), */
 html[it-hide-share-button='icons_only'] #menu button:has(svg path[d^="M10 3.158V7.51c"]) div:nth-child(2),
 html[it-hide-share-button='icons_only'] #menu button:has(svg path[d^="M10 3.158V7.51c"]) .yt-spec-button-shape-next__button-text-content,
-html[it-hide-share-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M10 3.158V7.51c"])  yt-formatted-string,
+/* html[it-hide-share-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M10 3.158V7.51c"])  yt-formatted-string, */
 /*previous:*/
 html[it-hide-share-button='hidden'] #menu button:has(svg path[d^="M15 5.63 20.66"]),
 html[it-hide-share-button='hidden'] #flexible-item-buttons button:has(svg path[d^="M15 5.63 20.66"]),
@@ -66,10 +66,10 @@ html[it-hide-share-button='icons_only'] #menu button:has(svg path[d^="M15 5.63 2
 	/*------# HIDE ASK BUTTON------*/
 html[it-hide-ask-button='hidden'] #menu yt-button-view-model:has(svg path[d^="M480-80q0-83-31.5"]),
 html[it-hide-ask-button='hidden'] #flexible-item-buttons yt-button-view-model:has(svg path[d^="M480-80q0-83-31.5"]),
-html[it-hide-ask-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M480-80q0-83-31.5"]),
+/* html[it-hide-ask-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M480-80q0-83-31.5"]), */
 html[it-hide-ask-button='icons_only'] #menu button:has(svg path[d^="M480-80q0-83-31.5"]) div:nth-child(2),
 html[it-hide-ask-button='icons_only'] #menu button:has(svg path[d^="M480-80q0-83-31.5"]) .yt-spec-button-shape-next__button-text-content,
-html[it-hide-ask-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M480-80q0-83-31.5"])  yt-formatted-string,
+/* html[it-hide-ask-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M480-80q0-83-31.5"])  yt-formatted-string, */
 	/*------# HIDE DOWNLOAD BUTTON------*/ /*TODO: UPDATE FOR NEW UI*/
 html[it-hide-download-button='hidden']	ytd-download-button-renderer,
 html[it-hide-download-button='icons_only'] ytd-download-button-renderer #text,
@@ -80,10 +80,10 @@ html[it-hide-download-button='icons_only'] #menu button:has(svg path[d^="M17 18v
 	/*------# HIDE THANKS BUTTON------*/
 html[it-hide-thanks-button='hidden'] #menu yt-button-view-model:has(svg path[d^="M16.25 2A6.7 6.7"]),
 html[it-hide-thanks-button='hidden'] #flexible-item-buttons yt-button-view-model:has(svg path[d^="M16.25 2A6.7 6.7"]),
-html[it-hide-thanks-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M16.25 2A6.7 6.7"]),
+/* html[it-hide-thanks-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M16.25 2A6.7 6.7"]), */
 html[it-hide-thanks-button='icons_only'] #menu button:has(svg path[d^="M16.25 2A6.7 6.7"]) div:nth-child(2),
 html[it-hide-thanks-button='icons_only'] #menu button:has(svg path[d^="M16.25 2A6.7 6.7"]) .yt-spec-button-shape-next__button-text-content,
-html[it-hide-thanks-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M16.25 2A6.7 6.7"]) yt-formatted-string,
+/* html[it-hide-thanks-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M16.25 2A6.7 6.7"]) yt-formatted-string, */
 /*previous:*/
 html[it-hide-thanks-button='hidden'] #menu button:has(svg path[d^="M11 17h2v-1h1c.55 0"]),
 html[it-hide-thanks-button='hidden'] #flexible-item-buttons button:has(svg path[d^="M11 17h2v-1h1c.55 0"]),
@@ -92,10 +92,10 @@ html[it-hide-thanks-button='icons_only'] #menu button:has(svg path[d^="M11 17h2v
 	/*------# HIDE CLIP BUTTON------*/
 html[it-hide-clip-button='hidden'] #menu yt-button-view-model:has(svg path[d^="M6 2.002a4 4 0 102.03"]),
 html[it-hide-clip-button='hidden'] #flexible-item-buttons yt-button-view-model:has(svg path[d^="M6 2.002a4 4 0 102.03"]),
-html[it-hide-clip-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M6 2.002a4 4 0 102.03"]),
+/* html[it-hide-clip-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M6 2.002a4 4 0 102.03"]), */
 html[it-hide-clip-button='icons_only'] #menu button:has(svg path[d^="M6 2.002a4 4 0 102.03"]) div:nth-child(2),
 html[it-hide-clip-button='icons_only'] #menu button:has(svg path[d^="M6 2.002a4 4 0 102.03"]) .yt-spec-button-shape-next__button-text-content,
-html[it-hide-clip-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M6 2.002a4 4 0 102.03"]) yt-formatted-string,
+/* html[it-hide-clip-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M6 2.002a4 4 0 102.03"]) yt-formatted-string, */
 /*previous:*/
 html[it-hide-clip-button='hidden'] #menu button:has(svg path[d^="M8 7c0 .55-.45 1-1"]),
 html[it-hide-clip-button='hidden'] #flexible-item-buttons button:has(svg path[d^="M8 7c0 .55-.45 1-1"]),
@@ -104,10 +104,10 @@ html[it-hide-clip-button='icons_only'] #menu button:has(svg path[d^="M8 7c0 .55-
 	/*------# HIDE SAVE BUTTON------*/
 html[it-hide-save-button='hidden'] #menu yt-button-view-model:has(svg path[d^="M19 2H5a2 2 0 00-2"]),
 html[it-hide-save-button='hidden'] #flexible-item-buttons yt-button-view-model:has(svg path[d^="M19 2H5a2 2 0 00-2"]),
-html[it-hide-save-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M19 2H5a2 2 0 00-2"]),
+/* html[it-hide-save-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M19 2H5a2 2 0 00-2"]), */
 html[it-hide-save-button='icons_only'] #menu button:has(svg path[d^="M19 2H5a2 2 0 00-2"]) div:nth-child(2),
 html[it-hide-save-button='icons_only'] #menu button:has(svg path[d^="M19 2H5a2 2 0 00-2"]) .yt-spec-button-shape-next__button-text-content,
-html[it-hide-save-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M19 2H5a2 2 0 00-2"]) yt-formatted-string,
+/* html[it-hide-save-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M19 2H5a2 2 0 00-2"]) yt-formatted-string, */
 /*previous:*/
 html[it-hide-save-button='hidden'] #menu button:has(svg path[d^="M22 13h-4v4h-2v-4h"]),
 html[it-hide-save-button='hidden'] #flexible-item-buttons button:has(svg path[d^="M22 13h-4v4h-2v-4h"]),
@@ -116,10 +116,10 @@ html[it-hide-save-button='icons_only'] #menu button:has(svg path[d^="M22 13h-4v4
 	/*------HIDE REPORT BUTTON------*/
 html[it-hide-report-button='hidden'] #menu yt-button-view-model:has(svg path[d^="m4 2.999-.146.073A1.55"]),
 html[it-hide-report-button='hidden'] #flexible-item-buttons yt-button-view-model:has(svg path[d^="m4 2.999-.146.073A1.55"]),
-html[it-hide-report-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="m4 2.999-.146.073A1.55"]),
+/* html[it-hide-report-button='hidden'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="m4 2.999-.146.073A1.55"]), */
 html[it-hide-report-button='icons_only'] #menu button:has(svg path[d^="m4 2.999-.146.073A1.55"]) div:nth-child(2),
 html[it-hide-report-button='icons_only'] #menu button:has(svg path[d^="m4 2.999-.146.073A1.55"]) .yt-spec-button-shape-next__button-text-content,
-html[it-hide-report-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="m4 2.999-.146.073A1.55"]) yt-formatted-string, 
+/* html[it-hide-report-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="m4 2.999-.146.073A1.55"]) yt-formatted-string,  */
 /*previous, with current options:*/
 html[it-hide-report-button='hidden'] #top-level-buttons-computed button#Report-button,
 html[it-hide-report-button='hidden'] #menu button:has(svg path[d^="m13.18 4 .24 1.2.16.8H19v7h-5.18l-.24-1.2-.16-.8H6V4h7.18M14"]),
@@ -174,15 +174,16 @@ html[it-hide-report-button='icons_only'] #menu button:has(svg path[d^="m4 2.999-
     	{margin-right: -6px !important;}
 
   	/*------# ICON ONLY MODE MARGIN FIX, DROPDOWN ITEMS ------*/
-html[it-hide-share-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M10 3.158V7.51c"]) yt-icon,
-html[it-hide-ask-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M480-80q0-83-31.5"]) yt-icon,
+/* html[it-hide-share-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M10 3.158V7.51c"]) yt-icon, */
+/* html[it-hide-ask-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M480-80q0-83-31.5"]) yt-icon, */
 /*------# TODO: ADD DOWNLOAD BUTTON------*/
-html[it-hide-thanks-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M16.25 2A6.7 6.7"]) yt-icon,
-html[it-hide-clip-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M6 2.002a4 4 0 102.03"]) yt-icon,
-html[it-hide-save-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M19 2H5a2 2 0 00-2"]) yt-icon,
-html[it-hide-report-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="m4 2.999-.146.073A1.55"]) yt-icon
+/* html[it-hide-thanks-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M16.25 2A6.7 6.7"]) yt-icon, */
+/* html[it-hide-clip-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M6 2.002a4 4 0 102.03"]) yt-icon, */
+/* html[it-hide-save-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="M19 2H5a2 2 0 00-2"]) yt-icon, */
+/* html[it-hide-report-button='icons_only'] tp-yt-paper-listbox tp-yt-paper-item:has(svg path[d^="m4 2.999-.146.073A1.55"]) yt-icon */
  /*=================================*/
-    	{margin-right: 4px !important;}
+    	/* {margin-right: 4px !important;} */
+
 /*  Dated:
 html[it-description='classic'] .ytd-watch-flexy #info-contents, 
 html[it-description='classic'] .ytd-watch-flexy #meta-contents { display: block !important; } 
