@@ -51,7 +51,8 @@
         "js&css/extension/www.youtube.com/general/general.js",
         "js&css/extension/www.youtube.com/appearance/sidebar/sidebar.js",
         "js&css/extension/www.youtube.com/appearance/comments/comments.js",
-        "js&css/extension/init.js"
+        "js&css/extension/init.js",
+        "features/shortsDoubleTap.js"
       ],
       "matches": ["https://www.youtube.com/*"],
       "run_at": "document_start"
