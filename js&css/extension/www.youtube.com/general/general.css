@@ -482,3 +482,22 @@ html[it-channel-compact-theme='true'] #sections > ytd-guide-section-renderer:nth
 html[it-channel-compact-theme='true'] #sections > ytd-guide-section-renderer:nth-child(4) > h3:active {
 	background-color: var(--yt-spec-10-percent-layer);
 }
+/*--------------------------------------------------------------
+# REORDER SEARCH FILTER CHIPS - MOVE UPLOAD DATE TO FAR LEFT
+--------------------------------------------------------------*/
+/* Enable flexbox layout for the chips container */
+ytd-feed-filter-chip-bar-renderer #chips-wrapper,
+yt-chip-cloud-renderer#chips {
+	display: flex !important;
+}
+
+/* Move "Upload Date" chip to the far left (first position) */
+/* Target the Upload Date chip by its text content */
+yt-chip-cloud-chip-renderer:has(yt-formatted-string:is([title*="Upload"], [title*="upload"], [aria-label*="Upload"], [aria-label*="upload"])) {
+	order: -100 !important;
+}
+
+/* Ensure all other chips have default order */
+yt-chip-cloud-chip-renderer {
+	order: 0 !important;
+}
