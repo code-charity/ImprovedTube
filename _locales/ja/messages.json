@@ -1,23 +1,37 @@
 {
-  "Left_Side_Menu": { "message": "左サイドメニュー" },
+  "Left_Side_Menu": {
+    "message": "左サイドメニュー"
+  },
   "hideSponsoredVideosOnHome": {
     "message": "ホーム画面でスポンサー動画を表示しない"
   },
   "ShortsForceTheStandardPlayer": {
     "message": "ショート動画: 標準プレイヤーを強制使用"
   },
-  "hideTopLoadingBar": { "message": "トップローディングバーを非表示" },
-  "withoutVideos": { "message": "'空', 動画プレビューなし" },
-  "hideBannerAds": { "message": "バナー広告を非表示（YouTube側で拒否される可能性があります）" },
-  "keyScene": { "message": "⚡最も再生回数の多いシーンに直接ジャンプ" },
-  "hideAISummary": { "message": "AI要約を非表示" },
+  "hideTopLoadingBar": {
+    "message": "トップローディングバーを非表示"
+  },
+  "withoutVideos": {
+    "message": "'空', 動画プレビューなし"
+  },
+  "hideBannerAds": {
+    "message": "バナー広告を非表示（YouTube側で拒否される可能性があります）"
+  },
+  "keyScene": {
+    "message": "⚡最も再生回数の多いシーンに直接ジャンプ"
+  },
+  "hideAISummary": {
+    "message": "AI要約を非表示"
+  },
   "requirePassword": {
     "message": "ImprovedTubeの設定を変更する際にパスワードを要求"
   },
-  "passwordOptions": { "message": "パスワードオプション" },
-  "enterPassword": { "message": "4桁のコードを入力してください" }
-,
-
+  "passwordOptions": {
+    "message": "パスワードオプション"
+  },
+  "enterPassword": {
+    "message": "4桁のコードを入力してください"
+  },
   "qualityWhenRunningOnBattery": {
     "message": "バッテリー駆動時の画質設定"
   },
