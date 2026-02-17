@@ -227,6 +227,13 @@ extension.skeleton.main.layers.section.shortcuts = {
 						}
 					}
 				},
+				     
+
+				shortcut_disable_spacebar_2x: {
+                     component: 'checkbox',
+                     text: 'Disable spacebar-hold 2x speed',
+                     value: false
+                 },
 				shortcut_stop: {
 					component: 'shortcut',
 					text: 'stop'
