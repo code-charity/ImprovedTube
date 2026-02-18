@@ -7,13 +7,21 @@ ImprovedTube.autoplayDisable = function (videoElement) {
 		|| this.storage.channel_trailer_autoplay === false) {
 		const player = this.elements.player || videoElement.closest('.html5-video-player') || videoElement.closest('#movie_player'); // #movie_player: outdated since 2024?
 
-		if (this.video_url !== location.href) {	this.user_interacted = false; }
+		// Only reset user_interacted when navigating to a NEW video URL
+		// Use defined check to handle initial page load
+		if (typeof this.video_url === 'undefined' || this.video_url !== location.href) {
+			// Track if this is the initial page load (no previous video)
+			this.initial_page_load = typeof this.video_url === 'undefined';
+			this.video_url = location.href;
+			this.user_interacted = false;
+		}
 
-		//if (there is a player) and (no user clicks) and (no ads playing) 
+		//if (there is a player) and (no user clicks) and (no ads playing)
 		// and( ((auto play is off and it is not in a playlist)
 		//   	 or (playlist auto play is off and in a playlist))
 		//   	 or (we are in a channel and the channel trailer autoplay is off)  )
 
+		// Only block autoplay on initial page load or navigation, not on user-initiated play
 		if (player && !this.user_interacted // (=user didnt click or type)
 			&& !player.classList.contains('ad-showing') // (=no ads playing, needs an update?)
 			&& ((location.href.includes('/watch?') // #1703 // (=video page)
