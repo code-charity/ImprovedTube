@@ -1119,6 +1119,10 @@ extension.skeleton.main.layers.section.appearance.on.click.sidebar = {
 					text: "hidden",
 					value: 'hidden'
 				}],
+			},		
+			livechat_below_theater: {
+				component: "switch",
+				text: 'livechatBelowTheater'
 			},
 			hide_playlist: {
 				component: "switch",

@@ -422,6 +422,99 @@ ImprovedTube.livechat = function () {
         }
     } */
 };
+
+/*------------------------------------------------------------------------------
+ LIVECHAT BELOW THEATER
+------------------------------------------------------------------------------*/
+ImprovedTube.livechatBelowTheater = function () {
+	if (this.storage.livechat_below_theater === true) {
+		const watchFlexy = document.querySelector("ytd-watch-flexy");
+		const liveChatFrame = document.querySelector("ytd-live-chat-frame#chat");
+		const chatTemplate = document.getElementById("chat-template");
+		
+		if (!watchFlexy || !liveChatFrame) return;
+		
+		// Check if we're in theater mode
+		const isTheaterMode = watchFlexy.hasAttribute("theater");
+		
+		if (isTheaterMode) {
+			// Move live chat below the player in theater mode
+			const primary = document.getElementById("primary");
+			const below = document.getElementById("below");
+			
+			if (primary && below) {
+				// Remove live chat from its current position
+				if (liveChatFrame.parentNode) {
+					liveChatFrame.parentNode.removeChild(liveChatFrame);
+				}
+				
+				// Insert live chat below the player (before comments)
+				const comments = document.querySelector("#comments");
+				if (comments && comments.parentNode === below) {
+					below.insertBefore(liveChatFrame, comments);
+				} else {
+					below.appendChild(liveChatFrame);
+				}
+				
+				// Set proper styling for the repositioned chat
+				liveChatFrame.style.width = "100%";
+				liveChatFrame.style.maxWidth = "100%";
+				liveChatFrame.style.marginTop = "16px";
+				liveChatFrame.style.marginBottom = "16px";
+			}
+		} else {
+			// Restore live chat to original position when not in theater mode
+			const secondary = document.getElementById("secondary");
+			const secondaryInner = document.getElementById("secondary-inner");
+			
+			if (secondary && secondaryInner && liveChatFrame.parentNode !== secondaryInner) {
+				// Remove from below position
+				if (liveChatFrame.parentNode) {
+					liveChatFrame.parentNode.removeChild(liveChatFrame);
+				}
+				
+				// Restore to secondary column
+				secondaryInner.appendChild(liveChatFrame);
+				
+				// Reset styling
+				liveChatFrame.style.width = "";
+				liveChatFrame.style.maxWidth = "";
+				liveChatFrame.style.marginTop = "";
+				liveChatFrame.style.marginBottom = "";
+			}
+		}
+	}
+};
+
+// Theater mode observer for live chat repositioning
+ImprovedTube.livechatTheaterModeObserver = function () {
+	if (this.storage.livechat_below_theater === true) {
+		const watchFlexy = document.querySelector("ytd-watch-flexy");
+		
+		if (watchFlexy && !this.livechatTheaterObserver) {
+			this.livechatTheaterObserver = new MutationObserver((mutations) => {
+				mutations.forEach((mutation) => {
+					if (mutation.type === 'attributes' && mutation.attributeName === 'theater') {
+						// Reposition live chat when theater mode changes
+						ImprovedTube.livechatBelowTheater();
+					}
+				});
+			});
+			
+			// Observe theater mode changes
+			this.livechatTheaterObserver.observe(watchFlexy, {
+				attributes: true,
+				attributeFilter: ['theater']
+			});
+		}
+	} else {
+		// Clean up observer when feature is disabled
+		if (this.livechatTheaterObserver) {
+			this.livechatTheaterObserver.disconnect();
+			this.livechatTheaterObserver = null;
+		}
+	}
+};
 /*------------------------------------------------------------------------------
   DETAILS
 ------------------------------------------------------------------------------*/

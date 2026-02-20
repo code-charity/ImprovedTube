@@ -349,14 +349,22 @@ ImprovedTube.videoPageUpdate = function () {
 		ImprovedTube.playerHamburgerButton();
 		ImprovedTube.playerControls();
 		
-		// Initialize large playlist handler for playlist videos
-		if (this.getParam(location.href, 'list')) {
-			ImprovedTube.playlistLargePlaylistHandler();
-		} else {
-			// Cleanup when not on a playlist
-			if (typeof ImprovedTube.cleanupPlaylistHandlers === 'function') {
-				ImprovedTube.cleanupPlaylistHandlers();
-			}
+// Initialize live chat below theater functionality
+if (this.storage.livechat_below_theater === true) {
+	ImprovedTube.livechatBelowTheater();
+	ImprovedTube.livechatTheaterModeObserver();
+}
+
+// Initialize large playlist handler for playlist videos
+if (this.getParam(location.href, 'list')) {
+	ImprovedTube.playlistLargePlaylistHandler();
+} else {
+	// Cleanup when not on a playlist
+	if (typeof ImprovedTube.cleanupPlaylistHandlers === 'function') {
+		ImprovedTube.cleanupPlaylistHandlers();
+	}
+}
+
 		}
 	}
 };

@@ -510,6 +510,41 @@ document.addEventListener('it-message-from-extension', function () {
 						ImprovedTube.disableAutoDubbing();
 					}
 					break
+				case 'livechat':
+					if (this.storage.livechat === 'hidden') {
+						document.documentElement.setAttribute('it-livechat', 'hidden');
+					} else if (this.storage.livechat === 'collapsed') {
+						document.documentElement.setAttribute('it-livechat', 'collapsed');
+					} else {
+						document.documentElement.removeAttribute('it-livechat');
+					}
+					break
+				case 'livechat_below_theater':
+					if (this.storage.livechat_below_theater === true) {
+						ImprovedTube.livechatBelowTheater();
+						ImprovedTube.livechatTheaterModeObserver();
+					} else {
+						// Clean up observer and restore chat position
+						if (ImprovedTube.livechatTheaterObserver) {
+							ImprovedTube.livechatTheaterObserver.disconnect();
+							ImprovedTube.livechatTheaterObserver = null;
+						}
+						// Restore live chat to original position
+						const liveChatFrame = document.querySelector("ytd-live-chat-frame#chat");
+						const secondaryInner = document.getElementById("secondary-inner");
+						if (liveChatFrame && secondaryInner && liveChatFrame.parentNode !== secondaryInner) {
+							if (liveChatFrame.parentNode) {
+								liveChatFrame.parentNode.removeChild(liveChatFrame);
+							}
+							secondaryInner.appendChild(liveChatFrame);
+							// Reset styling
+							liveChatFrame.style.width = "";
+							liveChatFrame.style.maxWidth = "";
+							liveChatFrame.style.marginTop = "";
+							liveChatFrame.style.marginBottom = "";
+						}
+					}
+					break
 				case  'smartSpeed':           
                     if (ImprovedTube.storage.smart_speed === true) { if(ImprovedTube.heatmap) {ImprovedTube.heatmap.init(); };
                     } else if (ImprovedTube.storage.smart_speed === false) { if(ImprovedTube.heatmap) { ImprovedTube.heatmap.isEnabled = false; document.querySelector("video").playbackRate = 1.0; } 
