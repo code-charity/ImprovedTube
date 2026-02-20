@@ -1480,6 +1480,7 @@ ImprovedTube.miniPlayer_scroll = function () {
 		ImprovedTube.mini_player__original_height = ImprovedTube.elements.player.offsetHeight;
 
 		ImprovedTube.elements.player.classList.add('it-mini-player');
+		ImprovedTube.elements.player.style.opacity = '1';
 
 		ImprovedTube.mini_player__x = Math.max(0, Math.min(ImprovedTube.mini_player__x, document.body.offsetWidth - ImprovedTube.mini_player__width));
 		ImprovedTube.mini_player__y = Math.max(0, Math.min(ImprovedTube.mini_player__y, window.innerHeight - ImprovedTube.mini_player__height));
@@ -1497,6 +1498,7 @@ ImprovedTube.miniPlayer_scroll = function () {
 	} else if (window.scrollY < 256 && ImprovedTube.mini_player__mode === true || ImprovedTube.elements.player.classList.contains('ytp-player-minimized') === true) {
 		ImprovedTube.mini_player__mode = false;
 		ImprovedTube.elements.player.classList.remove('it-mini-player');
+		ImprovedTube.elements.player.style.opacity = '';
 		ImprovedTube.mini_player__move = false;
 		ImprovedTube.elements.player.style.transform = 'translate(' + 0 + 'px, ' + 0 + 'px)';
 		ImprovedTube.elements.player.style.width = '';
