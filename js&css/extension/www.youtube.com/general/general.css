@@ -97,10 +97,9 @@ html[it-pathname='/'][it-hide-sponsored-videos-home="true"] ytd-rich-item-render
 /*--------------------------------------------------------------
 # EMBEDDED VIDEOS
  --------------------------------------------------------------*/
-/* Only apply embedded video UI hiding on youtube.com domain, not on third-party sites like Reddit */
-html[it-embeddedHidePauseOverlay='true'][it-pathname^="/embed"] .ytp-pause-overlay,
-html[it-embeddedHideYoutubeLogo='true'][it-pathname^="/embed"] a.ytp-youtube-button svg path,
-html[it-embeddedHideShare='true'][it-pathname^="/embed"] .ytp-share-button-visible:has(.ytp-share-icon),
+html[it-embeddedHidePauseOverlay='true'] .ytp-pause-overlay,
+html[it-embeddedHideYoutubeLogo='true'] a.ytp-youtube-button svg path,
+html[it-embeddedHideShare='true'] .ytp-share-button-visible:has(.ytp-share-icon),
 /*--------------------------------------------------------------
 # REMOVE MEMBER ONLY VIDEOS
 --------------------------------------------------------------*/
