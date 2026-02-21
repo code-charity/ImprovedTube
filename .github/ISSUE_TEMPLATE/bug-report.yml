@@ -1,0 +1,151 @@
+name: "🐞 Bug report form"
+title: "[🐞] "
+labels:
+  - "Bug"
+  - "good first issue"
+  - "help wanted"
+  - "up-for-grabs"
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report:
+
+  - type: textarea
+    attributes:
+      label: "Concise Description"
+      placeholder: |
+        To add screenshot or video click here. (Then drag & drop or "📎")
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: "Browser/s"
+      multiple: true
+      options:
+        - "Firefox"
+        - "Chrome"
+        - "Safari"
+        - "Brave"
+        - "Vivaldi"
+        - "Wh0ale"
+        - "Edge"
+        - "Opera"
+        - "Opera GX"
+    validations:
+      required: false
+
+  - type: input
+    attributes:
+      label: "Other Browser/s:"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ----
+        #### Thanks for coming & caring! Sometimes even 3 words are enough, just please check if the issue has already been reported: [Search in all issues](https://github.com/ImprovedTube/ImprovedTube/issues?q=). 
+          <i>(If this was posted before, you can write there to add details efficiently ♡ & give it your voice (this also moves it up in our lists) 
+          - If the status is "closed" (=[fixed](https://github.com/code-for-charity/ImprovedTube-for-YouTube/archive/refs/heads/master.zip)) very recently, then your Browser's store might update you soon /after [testing](https://github.com/code-charity/youtube/wiki/Contributing#test).   
+            - If it was already closed months/years ago, then youtube might change again. Then you can tag who fixed it last time ( @___ ) </i>
+        ----
+  - type: input
+    attributes:
+      label: "'Steps to reproduce' - Which of our features is required for the bug to happen?"
+      placeholder: "(=How to trigger this bug? Please walk us through)"
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "Since when?"
+      placeholder: "Since YouTube changed something? Or since we did?"
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: "Does the bug still happen when you log out of YouTube?"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: "..No? Then please paste your yt.config_.EXPERIMENT_FLAGS. Twice (With the error & Without)"
+      placeholder: |
+        Enter "yt.config_.EXPERIMENT_FLAGS" into the Browser console on YouTube. 
+        (To go there press F12 & click the console-tab) (alternatively ctrl+U, less tidy)
+
+  - type: input
+    attributes:
+      label: "Are any errors or related log-messages shown in the Browser-Console? (F12)"
+      placeholder: |
+        (To go there press F12 & click the console-tab) (alternatively ctrl+U, less tidy)
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ----
+        ## (The following might be optional depending the bug & what you filled above, yet worth reading:) 
+
+  - type: dropdown
+    attributes:
+      label: "Tested as the only active extension? (incognito mode or another browser users):"
+      options:
+        - "Yes"
+        - "No"
+
+  - type: input
+    attributes:
+      label: "Expected preferred behavior:"
+    validations:
+      required: false
+
+  - type: input
+    attributes:
+      label: "ImprovedTube Version"
+      placeholder: "(Written in the Extension header & your Browser's store)"
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: "Your Settings (From the Extension's `⋮`-Hamburger menu > Settings > Backup & reset > Export settings)"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        (You can remove Blocklist, History Analyzer data - or paste the following in the Browser-Console and hit enter: `(function({analyzer, blocklist, ...a}){return JSON.stringify(a)})(ImprovedTube.storage)`)
+
+  - type: textarea
+    attributes:
+      label: "Your YouTube-Document"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        `F12` & copy the whole root element: \<html> in the top [(how?)](https://github.com/code-charity/youtube/wiki/Contributing#Test) and or HTML-source (CTRL+U)  
+
+  - type: input
+    attributes:
+      label: "OS / Device:"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+         ### Many thanks & smiles!
