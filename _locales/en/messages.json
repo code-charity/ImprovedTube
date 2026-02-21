@@ -1,6 +1,10 @@
-{  
-  "hideSuggestedAction": { "message": "Hide Suggested Action 'View products'" },
-  "hideMerchShelf": { "message": "Hide 'Merch Shelf'" },
+{
+  "hideSuggestedAction": {
+    "message": "Hide Suggested Action 'View products'"
+  },
+  "hideMerchShelf": {
+    "message": "Hide 'Merch Shelf'"
+  },
   "about": {
     "message": "About"
   },
@@ -132,6 +136,9 @@
   },
   "autoPictureInPicture": {
     "message": "Auto Picture-In-Picture"
+  },
+  "autoBypassContentWarning": {
+    "message": "Bypass content warnings"
   },
   "autoplay": {
     "message": "Autoplay"

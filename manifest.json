@@ -16,7 +16,7 @@
       "id": "{3c6bf0cc-3ae2-42fb-9993-0d33104fdcaf}"
     }
   },
-	"background": 	{	
+  "background": {
     "service_worker": "background.js"
   },
   "action": {
@@ -51,16 +51,28 @@
         "js&css/extension/www.youtube.com/general/general.js",
         "js&css/extension/www.youtube.com/appearance/sidebar/sidebar.js",
         "js&css/extension/www.youtube.com/appearance/comments/comments.js",
+        "js&css/extension/bypass-content-warning.js",
         "js&css/extension/init.js"
       ],
-      "matches": ["https://www.youtube.com/*"],
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
       "run_at": "document_start"
     }
   ],
-  "host_permissions": ["https://www.youtube.com/*"],
-  "optional_host_permissions": ["https://returnyoutubedislikeapi.com/*"],
-  "optional_permissions": ["downloads"],
-  "permissions": ["contextMenus", "storage"],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "optional_host_permissions": [
+    "https://returnyoutubedislikeapi.com/*"
+  ],
+  "optional_permissions": [
+    "downloads"
+  ],
+  "permissions": [
+    "contextMenus",
+    "storage"
+  ],
   "web_accessible_resources": [
     {
       "resources": [
@@ -83,7 +95,9 @@
         "js&css/web-accessible/init.js",
         "menu/icons/48.png"
       ],
-      "matches": ["https://www.youtube.com/*"]
+      "matches": [
+        "https://www.youtube.com/*"
+      ]
     }
   ]
 }
