@@ -1856,6 +1856,13 @@ satus.components.colorPicker = function (component, skeleton) {
 
 							palette.nextSibling.children[0].style.backgroundColor = 'hsl(' + hsl[0] + 'deg,' + hsl[1] + '%, ' + hsl[2] + '%)';
 
+							// Update hex input
+							var hexInput = palette.parentNode.querySelector('.satus-color-picker__hex-input');
+							if (hexInput) {
+								var rgb = satus.color.hslToRgb(hsl);
+								hexInput.value = satus.color.rgbToHex(rgb);
+							}
+
 							event.preventDefault();
 						}
 
@@ -1904,6 +1911,80 @@ satus.components.colorPicker = function (component, skeleton) {
 
 							this.previousSibling.style.backgroundColor = 'hsl(' + hsl[0] + 'deg,' + hsl[1] + '%, ' + hsl[2] + '%)';
 							this.parentNode.previousSibling.style.backgroundColor = 'hsl(' + hsl[0] + 'deg, 100%, 50%)';
+
+							// Update hex input
+							var hexInput = this.parentNode.querySelector('.satus-color-picker__hex-input');
+							if (hexInput) {
+								var rgb = satus.color.hslToRgb(hsl);
+								hexInput.value = satus.color.rgbToHex(rgb);
+							}
+						}
+					}
+				},
+				hexInput: {
+					component: 'div',
+					class: 'satus-color-picker__hex-container',
+
+					label: {
+						component: 'span',
+						class: 'satus-color-picker__hex-label',
+						text: 'HEX:'
+					},
+					input: {
+						component: 'input',
+						class: 'satus-color-picker__hex-input',
+						attr: {
+							type: 'text',
+							maxlength: '7',
+							placeholder: '#000000',
+							value: satus.color.rgbToHex(component.color.value)
+						},
+						on: {
+							input: function () {
+								var value = this.value.trim();
+								var rgb = satus.color.hexToRgb(value);
+
+								if (rgb) {
+									var modal = this.skeleton.parentSkeleton.parentSkeleton.parentSkeleton,
+										hsl = satus.color.rgbToHsl(rgb);
+
+									modal.value = hsl;
+
+									// Update color preview
+									var colorPreview = this.parentNode.parentNode.querySelector('.satus-color-picker__color');
+									if (colorPreview) {
+										colorPreview.style.backgroundColor = 'rgb(' + rgb.join(',') + ')';
+									}
+
+									// Update palette background
+									var palette = this.parentNode.parentNode.previousSibling;
+									if (palette) {
+										palette.style.backgroundColor = 'hsl(' + hsl[0] + 'deg, 100%, 50%)';
+									}
+
+									// Update hue slider
+									var hueSlider = this.parentNode.parentNode.querySelector('.satus-color-picker__hue');
+									if (hueSlider && hueSlider.querySelector) {
+										var sliderInput = hueSlider.querySelector('input');
+										if (sliderInput) {
+											sliderInput.value = hsl[0];
+										}
+									}
+
+									// Update cursor position
+									var s = hsl[1] / 100,
+										l = hsl[2] / 100;
+									s *= l < .5 ? l : 1 - l;
+									var v = l + s;
+									s = 2 * s / (l + s);
+
+									var cursor = palette.querySelector('.satus-color-picker__cursor');
+									if (cursor) {
+										cursor.style.left = s * 100 + '%';
+										cursor.style.top = 100 - v * 100 + '%';
+									}
+								}
+							}
 						}
 					}
 				}
@@ -2799,6 +2880,44 @@ satus.color.hslToRgb = function (array) {
 	}
 
 	return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+};
+
+/*--------------------------------------------------------------
+# RGB TO HEX
+--------------------------------------------------------------*/
+
+satus.color.rgbToHex = function (array) {
+	var r = Math.round(array[0]).toString(16).padStart(2, '0'),
+		g = Math.round(array[1]).toString(16).padStart(2, '0'),
+		b = Math.round(array[2]).toString(16).padStart(2, '0');
+
+	return '#' + r + g + b;
+};
+
+/*--------------------------------------------------------------
+# HEX TO RGB
+--------------------------------------------------------------*/
+
+satus.color.hexToRgb = function (hex) {
+	// Remove # if present
+	hex = hex.replace(/^#/, '');
+
+	// Handle shorthand hex (e.g., #FFF)
+	if (hex.length === 3) {
+		hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+	}
+
+	// Parse hex values
+	var r = parseInt(hex.substring(0, 2), 16),
+		g = parseInt(hex.substring(2, 4), 16),
+		b = parseInt(hex.substring(4, 6), 16);
+
+	// Return null if invalid
+	if (isNaN(r) || isNaN(g) || isNaN(b)) {
+		return null;
+	}
+
+	return [r, g, b];
 };
 /*--------------------------------------------------------------
 >>> USER
