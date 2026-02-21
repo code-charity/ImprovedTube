@@ -180,3 +180,23 @@ ImprovedTube.youtubeLanguage = function () {
 		}
 	}
 };
+
+
+/*-----------------------------------------------------------------------------
+4.10.5 ADVANCED VIDEO BUFFERING
+-----------------------------------------------------------------------------*/
+
+ImprovedTube.advancedVideoBuffering = function () {
+    // You could add any change/display logic here if required,
+    // but the player logic will use ImprovedTube.storage.get('advanced_video_buffering')
+    // for the effective toggle.
+    // This stub is needed for extension settings consistency.
+	var enabled = this.storage.advanced_video_buffering;
+
+    // All logic to apply buffering/preload goes in player.js.
+    // Optionally: reload/update the player if the setting was changed.
+    if (changed) {
+        // You can reload the player or re-apply settings if needed:
+        ImprovedTube.applyPlayerSettings && ImprovedTube.applyPlayerSettings();
+}
+};
