@@ -3891,3 +3891,41 @@ ImprovedTube.playerAutoContinueWatching = function () {
 		});
 	}
 };
+
+/*------------------------------------------------------------------------------
+DOUBLE TAP SEEK DISTANCE
+------------------------------------------------------------------------------*/
+ImprovedTube.playerDoubleTapSeek = function() {
+    if (this.storage.player_double_tap_seek_distance === false) return;
+
+    const player = this.elements.player;
+    const video = this.elements.video;
+    if (!player) return;
+
+    if (player._doubleTapBound) return;
+    player._doubleTapBound = true;
+
+    var self = this;
+
+    function handler(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var rect = player.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var isForward = x > rect.width / 2;
+        var distance = parseInt(self.storage.player_double_tap_seek_distance) || 10;
+
+        if (isForward) {
+            player.seekBy(distance);
+        } else {
+            player.seekBy(-distance);
+        }
+    }
+
+    // Use capture phase to intercept before native handler
+    player.addEventListener('dblclick', handler, true);
+    if (video) {
+        video.addEventListener('dblclick', handler, true);
+    }
+};

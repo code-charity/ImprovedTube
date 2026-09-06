@@ -1902,6 +1902,15 @@ extension.skeleton.main.layers.section.player.on.click = {
 				component: 'switch',
 				text: 'player_rewind_and_forward_buttons'
 			},
+			player_double_tap_seek_distance: {
+				component: 'slider',
+				text: 'player_double_tap_seek_distance',
+				min: 1,
+				max: 60,
+				step: 1,
+				value: 10,
+				textarea: true
+			},
 			player_increase_decrease_speed_buttons: {
 				component: 'switch',
 				text: 'playerIncreaseDecreaseSpeedButtons',

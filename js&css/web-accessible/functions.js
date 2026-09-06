@@ -498,6 +498,7 @@ ImprovedTube.initPlayer = function () {
 		if (ImprovedTube.storage.hide_auto_dubbed_options === true) { ImprovedTube.observeAutoDubbedMenu(); }
 		if (ImprovedTube.storage.preferred_dubbing_language) { ImprovedTube.preferredDubbingLanguage(); }
 		if (ImprovedTube.storage.player_default_dubbed_language && ImprovedTube.storage.player_default_dubbed_language !== 'disabled') { ImprovedTube.selectDubbedLanguage(); }
+		ImprovedTube.playerDoubleTapSeek();
 	}
 };
 
