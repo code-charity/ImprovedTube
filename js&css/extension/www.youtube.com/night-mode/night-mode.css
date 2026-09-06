@@ -3,6 +3,7 @@
 ----------------------------------------------------------------
 # Bluelight
 # Dim
+# YouTube text color FIX (FINAL)
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -22,15 +23,11 @@ html[it-bluelight]:not([it-bluelight='0']) .html5-video-player.ytp-fullscreen {
 	position: fixed !important;
 	top: 0 !important;
 	left: 0 !important;
-
 	visibility: hidden !important;
-
 	width: 100% !important;
 	height: 100vh !important;
-
 	pointer-events: none !important;
 }
-
 
 /*--------------------------------------------------------------
 # DIM
@@ -41,12 +38,9 @@ html[it-bluelight]:not([it-bluelight='0']) .html5-video-player.ytp-fullscreen {
 	z-index: 2147483645 !important;
 	top: 0 !important;
 	left: 0 !important;
-
 	width: 100% !important;
 	height: 100vh !important;
-
 	pointer-events: none !important;
-
 	background: #000 !important;
 }
 
@@ -55,17 +49,88 @@ html[it-bluelight]:not([it-bluelight='0']) .html5-video-player.ytp-fullscreen {
 	z-index: 2147483645 !important;
 	top: 0 !important;
 	left: 0 !important;
-
 	visibility: hidden !important;
-
 	width: 100% !important;
 	height: 100vh !important;
-
 	pointer-events: none !important;
-
 	background: #000 !important;
 }
 
 .html5-video-player.ytp-fullscreen #it-dim-player {
 	visibility: visible !important;
+}
+
+/*==============================================================
+ ImprovedTube – YouTube TEXT COLOR FIX (PERMANENT)
+==============================================================*/
+/* ---------- DARK / NIGHT / BLACK THEMES ---------- */
+ytd-app[dark],
+html[it-theme=black] ytd-app,
+html[it-theme=night] ytd-app,
+html[it-theme=dawn] ytd-app,
+html[it-theme=sunset] ytd-app {
+	--yt-spec-text-primary: #ffffff !important;
+	--yt-spec-text-secondary: #cccccc !important;
+
+	--yt-primary-text-color: #ffffff !important;
+	--yt-secondary-text-color: #cccccc !important;
+	--yt-metadata-color: #cccccc !important;
+	--yt-expand-color: #cccccc !important;
+}
+
+
+/*--------------------------------------------------------------
+# TITLES – FOLLOW YOUTUBE SYSTEM
+--------------------------------------------------------------*/
+
+.yt-lockup-metadata-view-model__title {
+	text-decoration: none;
+	word-break: break-word;
+	padding-right: 24px;
+	color: var(--yt-spec-text-primary) !important;
+}
+
+/*--------------------------------------------------------------
+# VIDEO DESCRIPTION
+--------------------------------------------------------------*/
+
+ytd-watch-metadata #description,
+ytd-watch-metadata ytd-text-inline-expander {
+	color: var(--yt-spec-text-primary) !important;
+}
+
+ytd-watch-metadata a {
+	color: var(--yt-spec-call-to-action) !important;
+}
+
+
+
+/*==============================================================
+ GLOBAL FALLBACK (IMPORTANT FOR SHORTS)
+==============================================================*/
+
+/*Fallback for dark/night themes when Shorts are rendered outside ytd-app */
+
+html[dark],
+html[it-theme=black],
+html[it-theme=night],
+html[it-theme=dawn],
+html[it-theme=sunset] {
+	--yt-primary-text-color: #ffffff;
+	--yt-secondary-text-color: #cccccc;
+}
+
+/*==============================================================
+ YouTube Shorts – FINAL FIX
+==============================================================*/
+
+/* Shorts titles */
+.shortsLockupViewModelHostOutsideMetadataTitle {
+	color: var(--yt-primary-text-color, var(--yt-spec-text-primary)) !important;
+}
+
+/* Shorts metadata */
+.shortsLockupViewModelHostOutsideMetadataSubtitle,
+.shortsLockupViewModelHostOutsideMetadata {
+	color: var(--yt-secondary-text-color, var(--yt-spec-text-secondary)) !important;
 }
