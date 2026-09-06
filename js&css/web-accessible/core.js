@@ -98,8 +98,13 @@ CODEC || 30FPS
 ----------------------------------------------------------------
 	Do not move, needs to be on top of first injected content
 	file to patch HTMLMediaElement before YT player uses it.
+
+	Patches are always installed so that toggling 60fps OFF or
+	codec blocking at runtime takes effect without a reload.
+	The overwrite() function reads localStorage fresh each call,
+	so activation is fully dynamic.
 --------------------------------------------------------------*/
-if (localStorage['it-codec'] || localStorage['it-player30fps']) {
+(function () {
 	function overwrite(self, callback, mime) {
 		if (localStorage['it-codec']) {
 			var re = new RegExp(localStorage['it-codec']);
@@ -123,7 +128,7 @@ if (localStorage['it-codec'] || localStorage['it-player30fps']) {
 	HTMLMediaElement.prototype.canPlayType = function (mime) {
 		return overwrite(this, canPlayType, mime);
 	}
-};
+})();
 
 /*--------------------------------------------------------------
 # MESSAGES
