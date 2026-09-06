@@ -292,7 +292,12 @@ html[it-hide-scroll-for-details='true'] button.ytp-fullerscreen-edu-button {
 	display: none !important;
 }
 
-html[it-hide-scroll-for-details='true'] ytd-app[scrolling_] {
+html[it-hide-scroll-for-details='true'] ytd-app[scrolling_],
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen],
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #columns,
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #primary,
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #secondary,
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #below {
 	overflow: hidden !important;
 }
 
@@ -716,7 +721,12 @@ html[it-hide-scroll-for-details='true'] button.ytp-fullerscreen-edu-button {
 	display: none !important;
 }
 
-html[it-hide-scroll-for-details='true'] ytd-app[scrolling_] {
+html[it-hide-scroll-for-details='true'] ytd-app[scrolling_],
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen],
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #columns,
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #primary,
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #secondary,
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #below {
 	overflow: hidden !important;
 }
 
