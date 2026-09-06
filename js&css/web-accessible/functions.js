@@ -104,8 +104,7 @@ ImprovedTube.ytElementsHandler = function (node) {
 		this.improvedtubeYoutubeButtonsUnderPlayer();
 
 	} else if (name === 'YTD-VIDEO-SECONDARY-INFO-RENDERER') {
-		this.elements.yt_channel_name = node.querySelector('ytd-channel-name');
-		this.elements.yt_channel_link = node.querySelector('ytd-channel-name a');
+		this.refreshVideoOwnerElements(node);
 
 		if (document.documentElement.dataset.pageType === 'video') {
 			this.howLongAgoTheVideoWasUploaded();
@@ -360,6 +359,7 @@ ImprovedTube.videoPageUpdate = function () {
 
 		this.initialVideoUpdateDone = true;
 
+		ImprovedTube.refreshVideoOwnerElements();
 		ImprovedTube.howLongAgoTheVideoWasUploaded();
 		ImprovedTube.dayOfWeek();
 		ImprovedTube.exactUploadDate();
@@ -390,6 +390,82 @@ ImprovedTube.videoPageUpdate = function () {
 			if (typeof ImprovedTube.cleanupPlaylistHandlers === 'function') {
 				ImprovedTube.cleanupPlaylistHandlers();
 			}
+		}
+	}
+};
+
+ImprovedTube.getChannelUrlFromEndpoint = function (endpoint) {
+	if (!endpoint) {
+		return false;
+	}
+
+	var commandMetadata = endpoint.commandMetadata && endpoint.commandMetadata.webCommandMetadata,
+		browseEndpoint = endpoint.browseEndpoint,
+		url = (browseEndpoint && browseEndpoint.canonicalBaseUrl) || (commandMetadata && commandMetadata.url);
+
+	if (!url && browseEndpoint && browseEndpoint.browseId) {
+		url = '/channel/' + browseEndpoint.browseId;
+	}
+
+	if (url) {
+		try {
+			url = new URL(url, location.origin).href;
+		} catch (error) {}
+
+		if (this.regex.channel_link.test(url)) {
+			return url;
+		}
+	}
+
+	return false;
+};
+
+ImprovedTube.getChannelUrlFromRenderer = function (renderer) {
+	var data = renderer && ((renderer.__data && renderer.__data.data) || renderer.data),
+		runs = data && data.runs,
+		candidates = [
+			data && data.navigationEndpoint,
+			data && data.endpoint,
+			runs && runs[0] && runs[0].navigationEndpoint,
+			data && data.title && data.title.runs && data.title.runs[0] && data.title.runs[0].navigationEndpoint,
+			data && data.ownerText && data.ownerText.runs && data.ownerText.runs[0] && data.ownerText.runs[0].navigationEndpoint,
+			data && data.shortBylineText && data.shortBylineText.runs && data.shortBylineText.runs[0] && data.shortBylineText.runs[0].navigationEndpoint
+		];
+
+	for (var i = 0; i < candidates.length; i++) {
+		var url = this.getChannelUrlFromEndpoint(candidates[i]);
+
+		if (url) {
+			return url;
+		}
+	}
+
+	return false;
+};
+
+ImprovedTube.refreshVideoOwnerElements = function (root) {
+	var channelName = root && root.nodeName === 'YTD-CHANNEL-NAME'
+		? root
+		: root && root.querySelector && root.querySelector('ytd-channel-name');
+
+	if (!channelName) {
+		channelName = document.querySelector('#owner ytd-channel-name, #upload-info ytd-channel-name, ytd-watch-metadata ytd-channel-name, ytd-video-secondary-info-renderer ytd-channel-name');
+	}
+
+	if (channelName) {
+		this.elements.yt_channel_name = channelName;
+
+		var link = channelName.querySelector('a');
+
+		if (link) {
+			var url = this.getChannelUrlFromRenderer(channelName) || this.getChannelUrlFromRenderer(link);
+
+			if (url) {
+				link.href = url;
+			}
+
+			this.elements.yt_channel_link = link;
+			this.channelDefaultTab(link);
 		}
 	}
 };
