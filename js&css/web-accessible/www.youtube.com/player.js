@@ -73,7 +73,11 @@ ImprovedTube.playerAutoPip = function () {
 
 	if (this.storage.player_autoPip && this.storage.player_autoPip_outside && this.focus) {
 		this.enterPip(true);
-	} else if (this.storage.player_autoPip && !this.focus && !video?.paused) {
+	// #1351: Use played_before_blur instead of video.paused because
+	// playerAutopauseWhenSwitchingTabs() runs BEFORE this in pageOnFocus()
+	// and pauses the video, making !video?.paused always false on blur.
+	// played_before_blur captures the pre-pause state correctly.
+	} else if (this.storage.player_autoPip && !this.focus && this.played_before_blur) {
 		this.enterPip();
 	}
 };
