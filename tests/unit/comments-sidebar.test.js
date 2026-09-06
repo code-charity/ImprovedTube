@@ -214,4 +214,22 @@ describe('comments sidebar', () => {
 
 		expect(comments.parentElement.id).toBe('secondary-inner');
 	});
+
+	test('does not constrain player width while cinema mode is active', () => {
+		const { document } = installBrowserStubs(true);
+		loadAppearance();
+
+		const overlay = document._createElementWithId('div', 'overlay_cinema');
+		overlay.style.display = 'block';
+		document.body.appendChild(overlay);
+		document.documentElement.setAttribute('it-cinema-mode', 'true');
+
+		ImprovedTube.commentsSidebar();
+		jest.advanceTimersByTime(300);
+
+		const primary = document.getElementById('primary');
+		const player = document.querySelector('#player.style-scope.ytd-watch-flexy');
+		expect(primary.style.width).toBe('');
+		expect(player.style.width).toBe('');
+	});
 });

@@ -223,3 +223,17 @@ html[data-page-type=video][it-comments-sidebar='true'] #playlist #items {max-hei
 /* these were global without [it-comments-sidebar='true']  @D-Rekk */
 html[data-page-type=video][it-comments-sidebar='true'] ytd-watch-flexy #chat > tp-yt-paper-button#label {width:calc(100% - 40px);}
 html[data-page-type=video][it-comments-sidebar='true'] ytd-watch-flexy #right-arrow-container.ytd-merch-shelf-renderer {right: 44px !important;}
+
+/* Cinema mode should expand the player instead of reserving sidebar space */
+html[data-page-type=video][it-comments-sidebar='true'][it-cinema-mode='true'] ytd-watch-flexy #primary {
+	max-width: none !important;
+	width: 100% !important;
+	flex: 1 1 auto !important;
+}
+html[data-page-type=video][it-comments-sidebar='true'][it-cinema-mode='true'] ytd-watch-flexy #secondary {
+	display: none !important;
+}
+html[data-page-type=video][it-comments-sidebar='true'][it-cinema-mode='true'] ytd-watch-flexy #columns {
+	height: auto !important;
+	overflow: visible !important;
+}

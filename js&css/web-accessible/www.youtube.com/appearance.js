@@ -336,14 +336,18 @@ ImprovedTube.commentsSidebar = function () { if (ImprovedTube.storage.comments_s
 		clearTimeout(state.sidebarRetryTimer);
 		state.sidebarRetryTimer = setTimeout(sidebar, 250);
 	}
+	function isCinemaModeActive () {
+		const overlay = document.getElementById('overlay_cinema');
+		return !!(overlay && overlay.style.display !== 'none');
+	}
 	function resizePlayer () {
 		const player = document.querySelector("#player.style-scope.ytd-watch-flexy");
 		const video = document.querySelector("#player .ytp-chrome-bottom") || document.querySelector("#container .ytp-chrome-bottom");
 		const watchFlexy = document.querySelector("ytd-watch-flexy");
 		const primary = document.getElementById("primary");
 
-		// Don't set inline widths in fullscreen or theater mode - let CSS handle it
-		if (watchFlexy && (watchFlexy.hasAttribute("fullscreen") || watchFlexy.hasAttribute("theater"))) {
+		// Don't set inline widths in fullscreen, theater, or cinema mode - let CSS handle it
+		if (watchFlexy && (watchFlexy.hasAttribute("fullscreen") || watchFlexy.hasAttribute("theater") || isCinemaModeActive())) {
 			// Clear any previously set inline widths to let CSS rules apply
 			if (primary) primary.style.width = "";
 			if (player) player.style.width = "";
