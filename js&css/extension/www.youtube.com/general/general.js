@@ -220,7 +220,8 @@ extension.features.addScrollToTop = function (event) {
 
 extension.features.confirmationBeforeClosing = function () {
 	window.onbeforeunload = function () {
-		if (extension.storage.get('confirmation_before_closing') === true) {
+		var video = document.querySelector('video');
+		if (extension.storage.get('confirmation_before_closing') === true && !(video && video.ended)) {
 			return 'You have attempted to leave this page. Are you sure?';
 		}
 	};
