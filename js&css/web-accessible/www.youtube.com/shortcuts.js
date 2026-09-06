@@ -307,13 +307,15 @@ ImprovedTube.shortcutPrevVideo = function () {
 4.7.9 SEEK BACKWARD
 ------------------------------------------------------------------------------*/
 ImprovedTube.shortcutSeekBackward = function () {
-	this.elements.player?.seekBy(-10);
+	var distance = Number(this.storage.player_seek_distance) || 10;
+	this.elements.player?.seekBy(-distance);
 };
 /*------------------------------------------------------------------------------
 4.7.10 SEEK FORWARD
 ------------------------------------------------------------------------------*/
 ImprovedTube.shortcutSeekForward = function () {
-	this.elements.player?.seekBy(10);
+	var distance = Number(this.storage.player_seek_distance) || 10;
+	this.elements.player?.seekBy(distance);
 };
 /*------------------------------------------------------------------------------
 4.7.11 SEEK NEXT CHAPTER
