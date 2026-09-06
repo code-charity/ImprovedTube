@@ -241,6 +241,7 @@ html[it-player-miniplayer-button=true] .ytp-miniplayer-button,
 html[it-player-view-button=true] .ytp-size-button,
 html[it-player-screen-button=true] .ytp-fullscreen-button,
 html[it-player-remote-button=true] .ytp-remote-button,
+html[it-player-remote-button=true] .ytp-airplay-button,
 html[it-player-chaptertitle-button=true] .ytp-chapter-container {
 	display: none !important;
 }
