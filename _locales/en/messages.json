@@ -1437,6 +1437,9 @@
   "squaredThumbnails": {
     "message": "Squared thumbnails"
   },
+  "blurThumbnails": {
+    "message": "Blur thumbnails"
+  },
   "static": {
     "message": "Static"
   },

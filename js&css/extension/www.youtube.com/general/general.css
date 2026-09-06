@@ -15,6 +15,7 @@
 # Hide thumbnail icon
 # Hide dots on thumbnails
 # Squared thumbnails
+# Blur thumbnails
 --------------------------------------------------------------*/
 html[it-cursorLighting=true] #below			{opacity:.4; transition:3s;}
 html[it-cursorLighting=true] #below:hover	{opacity:1; transition:.5s;}
@@ -81,6 +82,31 @@ html[it-squared-thumbnails='true'] .shortsLockupViewModelHostThumbnailParentCont
 	--yt-img-border-radius: 0 !important;
 	--yt-thumbnail-border-radius: 0 !important;
 	border-radius: 0 !important;
+}
+/*--------------------------------------------------------------
+# BLUR THUMBNAILS
+--------------------------------------------------------------*/
+html[it-blur-thumbnails='true'] ytd-thumbnail img,
+html[it-blur-thumbnails='true'] ytd-playlist-thumbnail #thumbnail,
+html[it-blur-thumbnails='true'] ytd-playlist-thumbnail img,
+html[it-blur-thumbnails='true'] .yt-thumbnail-view-model img,
+html[it-blur-thumbnails='true'] .yt-lockup-view-model-wiz__content-image img,
+html[it-blur-thumbnails='true'] .yt-video-card-view-model__thumbnail,
+html[it-blur-thumbnails='true'] .yt-video-card-view-model__thumbnail img,
+html[it-blur-thumbnails='true'] .ytThumbnailViewModelImage,
+html[it-blur-thumbnails='true'] .ytwTopLandscapeImageLayoutViewModelHostImageHoverOverlayContainer,
+html[it-blur-thumbnails='true'] #img.ytp-cued-thumbnail-overlay-image {
+	filter: blur(10px) !important;
+	transition: filter .2s;
+}
+
+html[it-blur-thumbnails='true'] ytd-thumbnail:hover img,
+html[it-blur-thumbnails='true'] ytd-playlist-thumbnail:hover img,
+html[it-blur-thumbnails='true'] .yt-thumbnail-view-model:hover img,
+html[it-blur-thumbnails='true'] .yt-lockup-view-model-wiz__content-image:hover img,
+html[it-blur-thumbnails='true'] .yt-video-card-view-model__thumbnail:hover img,
+html[it-blur-thumbnails='true'] .ytThumbnailViewModelImage:hover {
+	filter: blur(0) !important;
 }
 /*--------------------------------------------------------------
 HIDING STUFF   (display:none !important) (Usually the !important isn't necessary)
