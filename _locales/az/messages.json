@@ -243,7 +243,7 @@
     "message": "Brauzer"
   },
   "browserAccountSync": {
-    "message": "Sinxronlaşdırma (Brauzer hesabı)"
+    "message": "Sinxronlaşdırma (brauzer hesabı)"
   },
   "browserVersion": {
     "message": "Brauzer versiyası"
@@ -360,10 +360,10 @@
     "message": "Fərdi"
   },
   "customCss": {
-    "message": "Xüsusi CSS"
+    "message": "Fərdi CSS"
   },
   "customJs": {
-    "message": "Xüsusi JS"
+    "message": "Fərdi JS"
   },
   "customMiniPlayer": {
     "message": "Fərdi mini pleyer"
@@ -462,7 +462,7 @@
     "message": "Üzərinə gələndə video oxutmasını söndür"
   },
   "muteThumbnailPreviews": {
-    "message": "Miniatür önizləmələrini səssiz et"
+    "message": "Miniatür önbaxışlarını səssiz et"
   },
   "dislike": {
     "message": "Bəyənmə"
@@ -570,7 +570,7 @@
     "message": "Alt hissə"
   },
   "forcedPlaybackSpeed": {
-    "message": "Sürətli izləmə: Daimi sürət"
+    "message": "Sürətli izləmə: daimi sürət"
   },
   "forcedPlaybackSpeedMusic": {
     "message": "(Musiqi üçün də oxutma sürətini məcbur et?)"
@@ -729,7 +729,7 @@
     "message": "\"Ödənişli reklam daxildir\" yazısını gizlət"
   },
   "hideLogo": {
-    "message": "Loqo: Gizlət!"
+    "message": "Loqo: gizlət!"
   },
   "hideMore": {
     "message": "'...' işarəsini gizlət"
@@ -747,7 +747,7 @@
     "message": "Pleylisti gizlət"
   },
   "hideProgressBarPreview": {
-    "message": "İrəliləyiş zolağı önizləməsini gizlət"
+    "message": "İrəliləyiş zolağı önbaxışını gizlət"
   },
   "hideReport": {
     "message": "'Şikayət et' düyməsini gizlət"
@@ -837,13 +837,13 @@
     "message": "ImprovedTube"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube: Brauzer yan paneli"
+    "message": "ImprovedTube: brauzer yan paneli"
   },
   "improvedtubeVersion": {
     "message": "ImprovedTube versiyası"
   },
   "improveLogo": {
-    "message": "Loqo: Monoxrom!"
+    "message": "Loqo: monoxrom!"
   },
   "increasePlaybackSpeed": {
     "message": "Oxutma sürətini artır"
@@ -867,7 +867,7 @@
     "message": "Dil"
   },
   "language_closed_caption": {
-    "message": "Dilin standartı - Bağlı altyazılar"
+    "message": "Dilin standartı - bağlı altyazılar"
   },
   "languages": {
     "message": "Dillər"
@@ -1140,10 +1140,10 @@
     "message": "Pleylistlər"
   },
   "playPause": {
-    "message": "Oxut / Dayandır"
+    "message": "Oxut / dayandır"
   },
   "popupAd": {
-    "message": "Popup reklam: Gizlət"
+    "message": "Popup reklam: gizlət"
   },
   "popupPlayer": {
     "message": "Popup pleyer"
@@ -1359,13 +1359,13 @@
     "message": "Paylaş"
   },
   "shortcut_chapters": {
-    "message": "Fəsillər (Yan panel) Aktiv/Deaktiv"
+    "message": "Fəsillər (yan panel) aktiv/deaktiv"
   },
   "shortcut_screenshot": {
     "message": "Ekran görüntüsü"
   },
   "shortcut_transcript": {
-    "message": "Transkript (Yan panel) Aktiv/Deaktiv"
+    "message": "Transkript (yan panel) aktiv/deaktiv"
   },
   "shortcuts": {
     "message": "Qısayollar"
@@ -1653,7 +1653,7 @@
     "message": "sürüşdürmə zolaqları ilə?"
   },
   "withoutVideos": {
-    "message": "'Boş', video önizləməsi olmadan"
+    "message": "'Boş', video önbaxışı olmadan"
   },
   "videoFilters": {
     "message": "Video süzgəcləri"
@@ -1701,10 +1701,10 @@
     "message": "YouTube düymələri"
   },
   "youtubeHeaderLeft": {
-    "message": "YouTube başlığı (sol)"
+    "message": "YouTube başlıq hissəsi (sol)"
   },
   "youtubeHeaderRight": {
-    "message": "YouTube başlığı (sağ)"
+    "message": "YouTube başlıq hissəsi (sağ)"
   },
   "youtubeHomePage": {
     "message": "YouTube əsas səhifəsi"
@@ -1752,7 +1752,7 @@
     "message": "Kanal profili əlavə et"
   },
   "smartSpeedWhitelisted": {
-    "message": "Kanal Ağıllı Sürət üçün ağ siyahıya alınıb!"
+    "message": "Kanal Ağıllı sürət üçün ağ siyahıya alınıb!"
   },
   "autoVideoRecovery": {
     "message": "Videonun avtomatik bərpası"
