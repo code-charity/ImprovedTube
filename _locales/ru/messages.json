@@ -48,7 +48,7 @@
     "message": "Разрешить автогенерацию"
   },
   "allow60fps": {
-    "message": "Разрешить 60fps"
+    "message": "Разрешить 60 FPS"
   },
   "allYourSettingsWillBeErasedAndCanTBeRecovered": {
     "message": "Все ваши настройки будут безвозвратно удалены"
@@ -60,10 +60,10 @@
     "message": "Всегда"
   },
   "alwaysActive": {
-    "message": "Всегда активный"
+    "message": "Всегда активен"
   },
   "alwaysShowProgressBar": {
-    "message": "Всегда показывать полосу прогресса"
+    "message": "Всегда показывать прогрессбар"
   },
   "amber": {
     "message": "Янтарный"
@@ -261,7 +261,7 @@
     "message": "Добавить кнопку обновления категории"
   },
   "changeThumbnailsPerRow": {
-    "message": "Миниатюр в строке"
+    "message": "Количество превью на ряд"
   },
   "channel": {
     "message": "Канал"
@@ -321,16 +321,16 @@
     "message": "Файлы cookie"
   },
   "copyVideoId": {
-    "message": "📋 Копия ID видео"
+    "message": "📋 Копировать ID видео"
   },
   "copyVideoUrl": {
     "message": "Копировать полный URL-адрес видео"
   },
   "copyTranscript": {
-    "message": "📋 Копия текста видео"
+    "message": "📋 Копировать расшифровку видео"
   },
   "FetchingTranscript": {
-    "message": "Готово..."
+    "message": "Загрузка расшифровки..."
   },
   "TranscriptError": {
     "message": "Ошибка"
@@ -339,13 +339,13 @@
     "message": "Ядра"
   },
   "cropChapterTitles": {
-    "message": "Обрезать заголовки глав"
+    "message": "Обрезать названия глав"
   },
   "Currently_requiring_a_YouTube_API_key": {
     "message": "(Требуется ключ YouTube-API: )"
   },
   "cursorLighting": {
-    "message": "Затемнить страницы Youtube, кроме той, на которой курсор!"
+    "message": "Затемнить части страницы когда на них не наведён курсор"
   },
   "custom": {
     "message": "Пользовательский"
@@ -483,7 +483,7 @@
     "message": "E-mail"
   },
   "embedded_Hide_Share": {
-    "message": "Встроенные: скрыть кнопку 'Поделиться'"
+    "message": "Скрыть кнопку 'Поделиться'"
   },
   "Embedded_YouTube": {
     "message": "Встроенный YouTube"
@@ -606,7 +606,7 @@
     "message": "Перейти в поле поиска"
   },
   "gpu": {
-    "message": "ГПУ"
+    "message": "ГП"
   },
   "GPUnotindatabase": {
     "message": "Графического процессора нет в базе данных"
@@ -651,10 +651,10 @@
     "message": "Скрыть наложение паузы"
   },
   "Hide_Shorts_remixing_this_video": {
-    "message": "Скрыть Шортсы на это видео"
+    "message": "Скрыть Шортсы с этим видео"
   },
   "Hide_sidebar": {
-    "message": "Скрыть боковую панель "
+    "message": "Скрыть боковую панель"
   },
   "Hide_the_tabs_only": {
     "message": "Скрыть только вкладки"
