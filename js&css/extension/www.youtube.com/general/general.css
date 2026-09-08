@@ -610,11 +610,23 @@ html[it-larger-thumbnail-metadata='true'] .yt-content-metadata-view-model-wiz__d
   Hides the play-triangle icon that YouTube inserted in front of
   the view count on thumbnails. The accompanying JS expands the
   shortened time-ago text and restores the interpunct delimiter.
+
+  YouTube renamed these view-model classes from the hyphenated
+  "-wiz__" form to camelCase, which is why the last selector exists.
+  The hyphenated selectors stay for surfaces still served the old
+  markup. Target the leading icon by name rather than every icon in
+  the row, so the channel verified badge keeps rendering.
+
+  camelCase names observed on watch and results pages, 2026-08.
+  YouTube renames these every few months, so if the play triangle
+  reappears, read the row markup first and add the new name here
+  rather than widening this to every icon in the row.
 --------------------------------------------------------------*/
 html[it-classic-thumbnail-metadata='true'] .yt-content-metadata-view-model-wiz__metadata-row .yt-content-metadata-view-model-wiz__metadata-icon,
 html[it-classic-thumbnail-metadata='true'] .yt-content-metadata-view-model-wiz__metadata-row yt-icon,
 html[it-classic-thumbnail-metadata='true'] .yt-content-metadata-view-model-wiz__metadata-text > svg,
-html[it-classic-thumbnail-metadata='true'] .yt-content-metadata-view-model-wiz__metadata-text > yt-icon {
+html[it-classic-thumbnail-metadata='true'] .yt-content-metadata-view-model-wiz__metadata-text > yt-icon,
+html[it-classic-thumbnail-metadata='true'] .ytContentMetadataViewModelMetadataRow .ytContentMetadataViewModelLeadingIcon {
 	display: none !important;
 }
 
