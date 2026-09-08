@@ -320,12 +320,12 @@ extension.skeleton.main.layers.section.player.on.click = {
 						smart_speed_min: {
 							component: 'slider',
 							text: 'smartSpeedMin',
-							value: 1.0, min: 0.5, max: 2.0, step: 0.1
+							value: 1.0, min: 0.5, max: 2.0, step: 0.05
 						},
 						smart_speed_max: {
 							component: 'slider',
 							text: 'smartSpeedMax',
-							value: 2.0, min: 1.0, max: 4.0, step: 0.1
+							value: 2.0, min: 1.0, max: 4.0, step: 0.05
 						},
 						smart_speed_sensitivity: {
 							component: 'slider',
@@ -457,9 +457,9 @@ extension.skeleton.main.layers.section.player.on.click = {
 															}
 														},
 														max_slider: {
-															component: 'slider', text: 'Max Speed', value: profiles[key].max, min: 1.0, max: 4.0, step: 0.1,
-															on: {
-																change: function() {
+															component: 'slider', text: 'Max Speed', value: profiles[key].max, min: 1.0, max: 4.0, step: 0.05,
+															on: { 
+																change: function() { 
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles'));
 																	freshState[key].max = Number(this.value);
 																	satus.storage.set('smart_speed_profiles', freshState);
@@ -467,9 +467,9 @@ extension.skeleton.main.layers.section.player.on.click = {
 															}
 														},
 														min_slider: {
-															component: 'slider', text: 'Min Speed', value: profiles[key].min, min: 0.5, max: 2.0, step: 0.1,
-															on: {
-																change: function() {
+															component: 'slider', text: 'Min Speed', value: profiles[key].min, min: 0.5, max: 2.0, step: 0.05,
+															on: { 
+																change: function() { 
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles'));
 																	freshState[key].min = Number(this.value);
 																	satus.storage.set('smart_speed_profiles', freshState);
