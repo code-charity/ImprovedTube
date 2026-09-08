@@ -78,6 +78,179 @@ ImprovedTube.playerAutoPip = function () {
 	}
 };
 /*------------------------------------------------------------------------------
+DISABLE TOUCH SWIPE TO MINI-PLAYER
+------------------------------------------------------------------------------*/
+ImprovedTube.playerDisableTouchSwipeToMiniplayer = function () {
+	var key = 'player_disable_touch_swipe_to_miniplayer',
+		options = {capture: true, passive: false},
+		blocker = this._touchSwipeToMiniplayerBlocker;
+
+	if (!blocker) {
+		blocker = this._touchSwipeToMiniplayerBlocker = {
+			touchId: null,
+			pointerId: null,
+			startX: 0,
+			startY: 0,
+			blocking: false,
+			enabled: false,
+			isPlayerSurfaceEvent: function (event) {
+				var path = typeof event.composedPath === 'function' ? event.composedPath() : [],
+					controlsSelector = 'button, a, input, textarea, select, [role="button"], .ytp-chrome-bottom, .ytp-progress-bar-container, .ytp-settings-menu, .ytp-popup, .ytp-tooltip, .ytp-caption-window-container',
+					surfaceSelector = 'video.html5-main-video, .html5-main-video, .html5-video-container, .ytp-cued-thumbnail-overlay';
+
+				for (var i = 0, l = path.length; i < l; i++) {
+					if (!path[i] || typeof path[i].matches !== 'function') {
+						continue;
+					}
+
+					if (path[i].matches(controlsSelector)) {
+						return false;
+					}
+
+					if (path[i].matches(surfaceSelector)) {
+						return true;
+					}
+				}
+
+				if (event.target && typeof event.target.closest === 'function') {
+					return !event.target.closest(controlsSelector) && Boolean(event.target.closest(surfaceSelector));
+				}
+
+				return false;
+			},
+			start: function (x, y, id, isPointer) {
+				this.startX = x;
+				this.startY = y;
+				this.blocking = false;
+				if (isPointer) {
+					this.pointerId = id;
+				} else {
+					this.touchId = id;
+				}
+			},
+			end: function () {
+				this.touchId = null;
+				this.pointerId = null;
+				this.blocking = false;
+			},
+			shouldBlock: function (x, y) {
+				var deltaX = Math.abs(x - this.startX),
+					deltaY = y - this.startY;
+
+				return deltaY >= 8 && deltaY > deltaX * 1.2;
+			},
+			stopGesture: function (event) {
+				if (event.cancelable) {
+					event.preventDefault();
+				}
+
+				event.stopImmediatePropagation();
+				event.stopPropagation();
+			}
+		};
+
+		blocker.touchStart = function (event) {
+			if (event.touches.length !== 1 || !blocker.isPlayerSurfaceEvent(event)) {
+				blocker.end();
+				return;
+			}
+
+			blocker.start(event.touches[0].clientX, event.touches[0].clientY, event.touches[0].identifier, false);
+		};
+
+		blocker.touchMove = function (event) {
+			var touch = null;
+
+			for (var i = 0, l = event.touches.length; i < l; i++) {
+				if (event.touches[i].identifier === blocker.touchId) {
+					touch = event.touches[i];
+					break;
+				}
+			}
+
+			if (!touch) {
+				return;
+			}
+
+			if (blocker.blocking || blocker.shouldBlock(touch.clientX, touch.clientY)) {
+				blocker.blocking = true;
+				blocker.stopGesture(event);
+			}
+		};
+
+		blocker.touchEnd = function (event) {
+			var ended = event.touches.length === 0;
+
+			for (var i = 0, l = event.changedTouches.length; i < l; i++) {
+				ended = ended || event.changedTouches[i].identifier === blocker.touchId;
+			}
+
+			if (blocker.blocking) {
+				blocker.stopGesture(event);
+			}
+
+			if (ended) {
+				blocker.end();
+			}
+		};
+
+		blocker.pointerDown = function (event) {
+			if (event.pointerType !== 'touch' || !blocker.isPlayerSurfaceEvent(event)) {
+				blocker.end();
+				return;
+			}
+
+			blocker.start(event.clientX, event.clientY, event.pointerId, true);
+		};
+
+		blocker.pointerMove = function (event) {
+			if (event.pointerId !== blocker.pointerId) {
+				return;
+			}
+
+			if (blocker.blocking || blocker.shouldBlock(event.clientX, event.clientY)) {
+				blocker.blocking = true;
+				blocker.stopGesture(event);
+			}
+		};
+
+		blocker.pointerEnd = function (event) {
+			if (event.pointerId !== blocker.pointerId) {
+				return;
+			}
+
+			if (blocker.blocking) {
+				blocker.stopGesture(event);
+			}
+
+			blocker.end();
+		};
+	}
+
+	if (this.storage[key] === true && blocker.enabled === false) {
+		document.addEventListener('touchstart', blocker.touchStart, options);
+		document.addEventListener('touchmove', blocker.touchMove, options);
+		document.addEventListener('touchend', blocker.touchEnd, options);
+		document.addEventListener('touchcancel', blocker.touchEnd, options);
+		document.addEventListener('pointerdown', blocker.pointerDown, options);
+		document.addEventListener('pointermove', blocker.pointerMove, options);
+		document.addEventListener('pointerup', blocker.pointerEnd, options);
+		document.addEventListener('pointercancel', blocker.pointerEnd, options);
+		blocker.enabled = true;
+	} else if (this.storage[key] !== true && blocker.enabled === true) {
+		document.removeEventListener('touchstart', blocker.touchStart, options);
+		document.removeEventListener('touchmove', blocker.touchMove, options);
+		document.removeEventListener('touchend', blocker.touchEnd, options);
+		document.removeEventListener('touchcancel', blocker.touchEnd, options);
+		document.removeEventListener('pointerdown', blocker.pointerDown, options);
+		document.removeEventListener('pointermove', blocker.pointerMove, options);
+		document.removeEventListener('pointerup', blocker.pointerEnd, options);
+		document.removeEventListener('pointercancel', blocker.pointerEnd, options);
+		blocker.enabled = false;
+		blocker.end();
+	}
+};
+/*------------------------------------------------------------------------------
 PLAYBACK SPEED
 ------------------------------------------------------------------------------*/
 ImprovedTube.playbackSpeed = function (newSpeed) {

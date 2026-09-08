@@ -86,6 +86,11 @@ extension.skeleton.main.layers.section.player.on.click = {
 			id: 'player_auto_continue_watching',
 			value: true
 		},
+		player_disable_touch_swipe_to_miniplayer: {
+			component: 'switch',
+			text: 'disableTouchSwipeToMiniplayer',
+			value: false
+		},
 		prevent_shorts_autoloop:{
 			component: 'switch',
 			text: 'preventShortVideoAutoloop',

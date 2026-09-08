@@ -153,6 +153,9 @@
   "autoContinueWatching": {
     "message": "Auto-accept «Continue watching?»"
   },
+  "disableTouchSwipeToMiniplayer": {
+    "message": "Disable touch swipe to mini-player"
+  },
   "autoPlayNextShort": {
     "message": "Shorts up next autoplay"
   },
