@@ -215,9 +215,6 @@
     "confirmationBeforeClosing": {
         "message": "Confirmar antes de encerrar"
     },
-    "Cores": {
-        "message": "Núcleos"
-    },
     "cropChapterTitles": {
         "message": "ReCortar títulos do capítulos"
     },
@@ -829,9 +826,6 @@
     },
     "remote": {
         "message": "Assistir na TV"
-    },
-    "removeHomePageShorts": {
-        "message": "Remover Shorts da página inicial"
     },
     "removeRelatedSearchResults": {
         "message": "Remove resultados relacionado com a pesquisa"

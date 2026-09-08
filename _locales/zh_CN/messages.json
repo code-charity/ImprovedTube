@@ -598,9 +598,6 @@
     "hiddenOnVideoPage": {
         "message": "在视频页面隐藏"
     },
-    "hideAiSummaries": {
-        "message": "隐藏 AI 摘要"
-    },
     "hide_author_avatars": {
         "message": "隐藏作者头像"
     },
@@ -738,9 +735,6 @@
     },
     "hideWatchedVideos": {
         "message": "隐藏已观看的视频"
-    },
-    "hideYouTubeLogo": {
-        "message": "隐藏 YouTube 徽标"
     },
     "high": {
         "message": "高"
@@ -1464,12 +1458,6 @@
     },
     "tryToReloadThePage": {
         "message": "请尝试重新加载页面"
-    },
-    "turnOff": {
-        "message": "关闭"
-    },
-    "turnOn": {
-        "message": "开启"
     },
     "type": {
         "message": "类型"

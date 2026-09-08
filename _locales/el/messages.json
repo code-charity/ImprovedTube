@@ -224,14 +224,8 @@
     "columns": {
       "message": "Επιπλέον στήλη πλαϊνής μπάρας"
     },
-    "comment": {
-      "message": "Σχόλιο"
-    },
     "comments": {
       "message": "Σχόλια"
-    },
-    "community": {
-      "message": "Κοινότητα"
     },
     "compact_spacing": {
       "message": "Συμπαγής Διάταξη"
@@ -353,9 +347,6 @@
     "doNotChange": {
       "message": "Να μην αλλάξει"
     },
-    "Download": {
-      "message": "Λήψη"
-    },
     "draggable": {
       "message": "Μετακινήσιμο με σύρση"
     },
@@ -406,9 +397,6 @@
     },
     "fitToWindow": {
       "message": "Προσαρμογή στο παράθυρο"
-    },
-    "Focus": {
-      "message": "Εστίαση"
     },
     "flash": {
       "message": "Flash"
@@ -541,9 +529,6 @@
     },
     "hideHomePageShorts": {
       "message": "Απόκρυψη Shorts από την αρχική σελίδα"
-    },
-    "hide_Labels": {
-      "message": "Απόκρυψη ετικετών"
     },
     "hideMore": {
       "message": "Απόκρυψη περισσότερων"
@@ -722,9 +707,6 @@
     "markWatchedVideos": {
       "message": "Επισήμανση βίντεο που προβλήθηκαν"
     },
-    "maxWidthWithinThePage": {
-      "message": "Μέγ. πλάτος εντός της σελίδας"
-    },
     "medium": {
       "message": "Μεσαία"
     },
@@ -842,12 +824,6 @@
     "player_auto_hide_cinema_mode_when_paused": {
       "message": "Αυτόματη απόκρυψη λειτουργίας κινηματογράφου κατά την παύση"
     },
-    "player_autoplay_disable": {
-      "message": "Απενεργοποίηση αυτόματης αναπαραγωγής"
-    },
-    "player_auplayer_SDR": {
-      "message": "Αυτόματη επαναλαμβανόμενη λειτουργία SDR"
-    },
     "player_cinema_mode_button": {
       "message": "Κουμπί λειτουργίας κινηματογράφου"
     },
@@ -919,9 +895,6 @@
     },
     "remote": {
       "message": "Παίξε στην TV"
-    },
-    "remove": {
-      "message": "Αφαίρεση"
     },
     "removeBlackBars": {
       "message": "Κατάργηση μαύρων μπαρών"
@@ -1020,9 +993,6 @@
     },
     "shortcut_screenshot": {
       "message": "Στιγμιότυπο οθόνης"
-    },
-    "shorts": {
-      "message": "Shorts"
     },
     "showCardsOnMouseHover": {
       "message": "Εμφάνιση καρτών όταν ο κέρσορας είναι από πάνω"
@@ -1134,9 +1104,6 @@
     },
     "timeTo": {
       "message": "Χρόνος έως"
-    },
-    "Titles": {
-      "message": "Τίτλοι"
     },
     "todayAt": {
       "message": "Σήμερα στις"

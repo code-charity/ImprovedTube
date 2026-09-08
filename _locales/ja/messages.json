@@ -1613,9 +1613,6 @@
   "muteThumbnailPreviews": {
     "message": "サムネイルプレビューを消音"
   },
-  "displayDayOfTheWeak": {
-    "message": "曜日を表示"
-  },
   "playlistQuality": {
     "message": "プレイリスト再生時の画質"
   },
