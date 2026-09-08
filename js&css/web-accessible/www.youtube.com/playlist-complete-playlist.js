@@ -57,13 +57,17 @@ function getSetVideoIdFromRenderer(renderer) {
  */
 function getWatchedPercentFromRenderer(renderer) {
     // Prefer explicit resume overlay progress
-    const progress = renderer.querySelector('ytd-thumbnail-overlay-resume-playback-renderer #progress');
+    const progress = renderer.querySelector(
+        'ytw-thumbnail-overlay-resume-playback-renderer [class*="ThumbnailOverlayResumePlaybackProgress"], ytd-thumbnail-overlay-resume-playback-renderer #progress'
+    );
+    
     if (progress && progress.style && progress.style.width) {
         const p = parsePercentFromStyle(progress.style.width);
         if (!Number.isNaN(p)) return p;
     }
     // Fully watched overlay exists on some items
-    if (renderer.querySelector('ytd-thumbnail-overlay-watched-status-renderer')) return 100;
+    if (renderer.querySelector('ytw-thumbnail-overlay-watched-status-renderer, ytd-thumbnail-overlay-watched-status-renderer')) return 100;
+
     return 0;
 }
 
