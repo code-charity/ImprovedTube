@@ -468,7 +468,25 @@ extension.skeleton.main.layers.section.general = {
 				},
 				hide_watched_videos: {
 					component: 'switch',
-					text: 'hideWatchedVideos'
+					text: 'hideWatchedVideos',
+					on: {
+						click: function () {
+							setTimeout(() => {
+								if (satus.storage.get('hide_watched_videos') && !satus.storage.get('track_watched_videos')) {
+									satus.storage.set('track_watched_videos', true);
+								}
+							}, 250);
+						}
+					}
+				},
+				hide_watched_videos_threshold: {
+					component: 'slider',
+					variant: 'row',
+					text: 'hideWatchedVideosThreshold',
+					min: 1,
+					max: 100,
+					step: 1,
+					value: 90
 				},
 				hide_watch_later: {
 					component: 'switch',

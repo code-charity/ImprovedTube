@@ -792,6 +792,9 @@
   "hideWatchedVideos": {
     "message": "Hide watched videos"
   },
+  "hideWatchedVideosThreshold": {
+    "message": "Hide watched videos at"
+  },
   "high": {
     "message": "High"
   },

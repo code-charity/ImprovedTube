@@ -11,6 +11,7 @@ window.addEventListener('yt-navigate-finish', function () {
 	extension.features.trackWatchedVideos();
 	extension.features.thumbnailsQuality();
 	extension.features.stickyNavigation();
+	extension.features.hideWatchedVideos();
 	extension.features.hideSponsoredVideosOnHome?.();
 });
 
@@ -46,6 +47,7 @@ extension.events.on('init', function () {
 	extension.features.disableThumbnailPlayback();
 	extension.features.muteThumbnailPreviews();
 	extension.features.markWatchedVideos();
+	extension.features.hideWatchedVideos();
 	extension.features.relatedVideos();
 	extension.features.sidePanels();
 	extension.features.stickyNavigation();

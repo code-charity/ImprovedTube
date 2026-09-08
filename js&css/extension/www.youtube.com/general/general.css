@@ -53,6 +53,18 @@ html[it-cursorLighting=true]:not([data-page-type=video]) #guide-content:hover,
 html[it-cursorLighting=true] ytd-mini-guide-renderer:hover	{opacity:1; transition:.3s}
 
 /*--------------------------------------------------------------
+# HIDE WATCHED VIDEOS
+--------------------------------------------------------------*/
+ytd-compact-video-renderer[it-hide-watched-video],
+ytd-rich-item-renderer[it-hide-watched-video],
+ytd-video-renderer[it-hide-watched-video],
+ytd-grid-video-renderer[it-hide-watched-video],
+ytd-playlist-video-renderer[it-hide-watched-video],
+ytd-reel-item-renderer[it-hide-watched-video] {
+	display: none !important;
+}
+
+/*--------------------------------------------------------------
 # SQUARED THUMBNAILS
 --------------------------------------------------------------*/
 html[it-squared-thumbnails='true'] ytd-thumbnail img,
