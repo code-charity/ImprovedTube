@@ -1926,7 +1926,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 			component: "button",
 			text: "hidePlayerControlsBarButtons",
 			on: {
-				click: 'main.layers.section.appearance.on.click.player.on.click.player_hide_controls_options.on.click'
+				click: 'main.layers.section.appearance.on.click.player.on.click.section_1.player_hide_controls_options.on.click'
 			}
 		}
 	}
