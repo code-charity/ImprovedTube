@@ -22,8 +22,18 @@ ImprovedTube.playlistUpNextAutoplay = function () {
 // currentIndex and localCurrentIndex to desync at chunk boundaries.
 // This handler keeps them in sync so autoplay continues working.
 // Only runs when playlist_up_next_autoplay is NOT disabled.
+// ⚠️ Skip queue-type playlists (WL=Watch Later, RD=Radio, OLAK5uy_=auto-mix)
+// to prevent interference with YouTube's queue autoplay behavior.
 ImprovedTube.playlistLargePlaylistHandler = function() {
 	if (!this.getParam(location.href, 'list')) return;
+
+	// Skip queue-type playlists — these are not regular user playlists
+	// and the index sync logic can interfere with YouTube's queue autoplay
+	var listId = this.getParam(location.href, 'list');
+	if (listId === 'WL' || listId === 'RD' || listId.indexOf('RDAMVM') === 0 || listId.indexOf('OLAK5uy_') === 0) {
+		this.cleanupPlaylistHandlers();
+		return;
+	}
 
 	// Do not sync indices if the user has disabled playlist autoplay,
 	// because playlistUpNextAutoplay intentionally sets currentIndex
