@@ -460,13 +460,14 @@ extension.features.watchLaterButtons = function (event) {
 	}
 
 	function addWatchLaterButton(thumbnail) {
-		var videoId = thumbnail ? getVideoId(thumbnail.href) : null;
+		var videoId = thumbnail ? getVideoId(thumbnail.href) : null,
+			container = thumbnail ? thumbnail.parentElement : null;
 
-		if (thumbnail && thumbnail.itWatchLaterButton && !thumbnail.contains(thumbnail.itWatchLaterButton)) {
+		if (thumbnail && thumbnail.itWatchLaterButton && (!container || !container.contains(thumbnail.itWatchLaterButton))) {
 			thumbnail.itWatchLaterButton = null;
 		}
 
-		if (thumbnail && videoId && !thumbnail.itWatchLaterButton) {
+		if (thumbnail && videoId && container && !thumbnail.itWatchLaterButton) {
 			var button = document.createElement('button'),
 				svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 				path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -481,11 +482,17 @@ extension.features.watchLaterButtons = function (event) {
 			path.setAttribute('d', 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18.2A8.2 8.2 0 1 1 20.2 12 8.2 8.2 0 0 1 12 20.2Zm.7-13.2h-1.8v5.8l5 3 .9-1.5-4.1-2.4Z');
 			svg.appendChild(path);
 			button.appendChild(svg);
-			thumbnail.appendChild(button);
+			// Append to the thumbnail's parent container (the renderer) rather than
+			// the thumbnail anchor itself: YouTube marks the anchor with
+			// aria-hidden="true", so injecting a focusable button as a direct child
+			// triggers "Blocked aria-hidden on an element because its descendant
+			// retained focus" in the console. Visual placement is unaffected because
+			// the button is positioned absolutely relative to a higher ancestor.
+			container.appendChild(button);
 			thumbnail.itWatchLaterButton = button;
 
 			button.addEventListener('click', function (clickEvent) {
-				var nativeButton = findNativeWatchLaterButton(this.parentElement),
+				var nativeButton = findNativeWatchLaterButton(container),
 					id = this.dataset.id;
 
 				clickEvent.preventDefault();
