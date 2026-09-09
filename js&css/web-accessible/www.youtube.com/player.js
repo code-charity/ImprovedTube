@@ -1455,6 +1455,25 @@ ImprovedTube.playerCinemaModeEnable = function () {
 	if (this.storage.player_auto_cinema_mode || this.storage.player_auto_hide_cinema_mode_when_paused) {
 
 		if ((/watch\?/.test(location.href))) {
+			// Issue #4003: set the player's z-index above the overlay (9999)
+			// BEFORE creating the overlay, so the player is always on top
+			// of the curtain from the first paint frame.
+			var player = document.getElementById('player-full-bleed-container');
+			if (player) {
+				player.style.zIndex = 10000;
+				player.style.position = 'relative';
+			}
+			var playerDefault = document.getElementById('player-container');
+			if (playerDefault) {
+				playerDefault.style.zIndex = 10000;
+				playerDefault.style.position = 'relative';
+			}
+			var ytdPlayer = document.getElementById('ytd-player');
+			if (ytdPlayer) {
+				ytdPlayer.style.zIndex = 10000;
+				ytdPlayer.style.position = 'relative';
+			}
+
 			var overlay = document.getElementById('overlay_cinema');
 
 			if (this.storage.player_auto_cinema_mode === true && !overlay) {
@@ -1464,21 +1483,6 @@ ImprovedTube.playerCinemaModeEnable = function () {
 
 			if (overlay) {
 				overlay.style.display = 'block'
-				var player = document.getElementById('player-full-bleed-container');
-				if (player) {
-					player.style.zIndex = 10000;
-					player.style.position = 'relative';
-				}
-				var playerDefault = document.getElementById('player-container');
-				if (playerDefault) {
-					playerDefault.style.zIndex = 10000;
-					playerDefault.style.position = 'relative';
-				}
-				var ytdPlayer = document.getElementById('ytd-player');
-				if (ytdPlayer) {
-					ytdPlayer.style.zIndex = 10000;
-					ytdPlayer.style.position = 'relative';
-				}
 
 				var cinemaModeButton = xpath('//*[@id="it-cinema-mode-button"]')[0]
 				if (cinemaModeButton) cinemaModeButton.style.opacity = 1
