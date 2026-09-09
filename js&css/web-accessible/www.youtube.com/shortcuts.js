@@ -483,16 +483,52 @@ ImprovedTube.shortcutActivateCaptions = function () {
 };
 /*------Chapters------*/
 ImprovedTube.shortcutChapters = function () {
-	const available = document.querySelector('[target-id*=chapters][visibility*=HIDDEN]') || document.querySelector('[target-id*=chapters]').clientHeight;
-	if (available) {
-		const modernChapters = document.querySelector('[modern-chapters] #navigation-button button[aria-label]');
-		modernChapters ? modernChapters.click() : document.querySelector('[target-id*=chapters]')?.removeAttribute('visibility');
-	} else {
-		const visibilityButton = document.querySelector('[target-id*=chapters][visibility*=EXPANDED] #visibility-button button[aria-label]');
-		visibilityButton ? visibilityButton.click() : document.querySelector('*[target-id*=chapters] #visibility-button button')?.click();
+	const fullscreenElement =
+		document.fullscreenElement ||
+		document.webkitFullscreenElement ||
+		document.querySelector('.html5-video-player.ytp-fullscreen');
+
+	if (fullscreenElement) {
+		const fullscreenChapters = fullscreenElement.querySelector(
+			'.ytp-chapter-title'
+		);
+
+		if (fullscreenChapters) {
+			fullscreenChapters.click();
+			return;
+		}
 	}
-	if (!modernChapters && visibilityButton) {
-		console.error('shortcutChapters: Cant fint proper Enable button, falling back to unreliable bruteforce method');
+
+	const chaptersPanel = document.querySelector('[target-id*=chapters]');
+
+	if (!chaptersPanel) {
+		return;
+	}
+
+	const modernChapters = document.querySelector(
+		'[modern-chapters] #navigation-button button[aria-label]'
+	);
+
+	const visibilityButton = document.querySelector(
+		'[target-id*=chapters][visibility*=EXPANDED] #visibility-button button[aria-label]'
+	);
+
+	const available =
+		document.querySelector('[target-id*=chapters][visibility*=HIDDEN]') ||
+		chaptersPanel.clientHeight;
+
+	if (available) {
+		if (modernChapters) {
+			modernChapters.click();
+		} else {
+			chaptersPanel.removeAttribute('visibility');
+		}
+	} else if (visibilityButton) {
+		visibilityButton.click();
+	} else {
+		chaptersPanel
+			.querySelector('#visibility-button button')
+			?.click();
 	}
 };
 /*------Transcript------*/
