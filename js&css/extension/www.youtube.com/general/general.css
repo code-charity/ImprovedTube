@@ -43,8 +43,12 @@ html[it-cursorLighting=true] ytd-guide-entry-renderer:hover,   /*ytd-watch-next-
 html[it-cursorLighting=true] #donation-shelf:hover,
 html[it-cursorLighting=true] ytd-ad-slot-renderer:hover,
 html[it-cursorLighting=true] #player-ads:hover			{opacity:1; transition:.3s}
+html[it-cursorLighting=true] ytd-feed-filter-chip-bar-renderer,
+html[it-cursorLighting=true] #chips-wrapper,
 html[it-cursorLighting=true] ytd-two-column-browse-results-renderer,
 html[it-cursorLighting=true] ytd-search			{opacity:.7; transition:5s;}
+html[it-cursorLighting=true] ytd-feed-filter-chip-bar-renderer:hover,
+html[it-cursorLighting=true] #chips-wrapper:hover,
 html[it-cursorLighting=true] ytd-two-column-browse-results-renderer:hover,
 html[it-cursorLighting=true] ytd-search:hover	{opacity:1; transition:3s}
 html[it-cursorLighting=true]:not([data-page-type=video]) #guide-content,
