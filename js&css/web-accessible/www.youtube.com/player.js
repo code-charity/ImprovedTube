@@ -3891,3 +3891,403 @@ ImprovedTube.playerAutoContinueWatching = function () {
 		});
 	}
 };
+
+/*------------------------------------------------------------------------------
+WATCHED SECTIONS ON THE SEEK BAR
+--------------------------------------------------------------------------------
+	Records which parts of a video were actually played and paints them on the
+	progress bar, so scattered sections of long videos or streams stay visible.
+	The layer is inserted below YouTube's own bars, which keeps the played and
+	the buffered progress untouched.
+------------------------------------------------------------------------------*/
+ImprovedTube.watchedSegments = {
+	STORAGE_KEY: 'watched_segments',
+	MAX_VIDEOS: 200,
+	MERGE_GAP: 1,
+	RENDER_DELAY: 1000,
+	SAVE_DELAY: 5000,
+
+	attached_video: null,
+	dirty: false,
+	handlers: null,
+	last_time: null,
+	render_timer: null,
+	save_timer: null,
+	segments: [],
+	video_id: '',
+
+	enabled: function () {
+		return ImprovedTube.storage.player_watched_segments === true;
+	},
+
+	video: function () {
+		return ImprovedTube.elements.video || document.querySelector('#movie_player video');
+	},
+
+	duration: function () {
+		var video = this.video(),
+			duration = video && video.duration;
+
+		return typeof duration === 'number' && isFinite(duration) && duration > 0 ? duration : 0;
+	},
+
+	currentVideoId: function () {
+		var match = ImprovedTube.regex.video_id.exec(location.href);
+
+		return match ? match[1] : '';
+	},
+
+	adShowing: function () {
+		var player = ImprovedTube.elements.player;
+
+		return !!player && /ad-showing|ad-interrupting/.test(player.className);
+	},
+
+	init: function () {
+		var page_type = document.documentElement.dataset.pageType;
+
+		if (!this.enabled() || (page_type !== 'video' && page_type !== 'embed')) {
+			this.disable();
+
+			return;
+		}
+
+		this.injectStyles();
+
+		var self = this;
+
+		clearInterval(this.render_timer);
+
+		// The player is not always complete yet, so the tick picks it up later.
+		this.render_timer = setInterval(function () { self.tick(); }, this.RENDER_DELAY);
+
+		this.tick();
+	},
+
+	tick: function () {
+		if (!this.enabled()) {
+			this.disable();
+
+			return;
+		}
+
+		var video = this.video();
+
+		if (!video) { return; }
+
+		this.attach(video);
+		this.syncVideoId();
+		this.render();
+	},
+
+	// An empty id means the player kept going outside a watch page.
+	syncVideoId: function () {
+		var video_id = this.currentVideoId();
+
+		if (video_id && video_id !== this.video_id) {
+			this.load(video_id);
+		}
+	},
+
+	disable: function () {
+		clearInterval(this.render_timer);
+
+		this.render_timer = null;
+
+		this.save();
+		this.detach();
+		this.clear();
+
+		ImprovedTube.elements.buttons['it-watched-segments-styles']?.remove();
+
+		delete ImprovedTube.elements.buttons['it-watched-segments-styles'];
+	},
+
+	injectStyles: function () {
+		if (ImprovedTube.elements.buttons['it-watched-segments-styles']) { return; }
+
+		var style = document.createElement('style');
+
+		style.id = 'it-watched-segments-styles';
+		style.textContent = '.it-watched-segments{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}'
+			+ '.it-watched-segment{position:absolute;top:0;height:100%;background:var(--it-watched-segment-color,rgba(62,166,255,.85))}';
+
+		ImprovedTube.elements.buttons['it-watched-segments-styles'] = style;
+
+		(document.head || document.documentElement).appendChild(style);
+	},
+
+	attach: function (video) {
+		if (this.attached_video === video) { return; }
+
+		var self = this;
+
+		if (!this.handlers) {
+			this.handlers = {
+				timeupdate: function () { self.track(); },
+				seeking: function () { self.last_time = null; },
+				pause: function () { self.last_time = null; self.save(); },
+				ended: function () { self.last_time = null; self.save(); }
+			};
+
+			window.addEventListener('pagehide', function () { self.save(); });
+			document.addEventListener('visibilitychange', function () {
+				if (document.visibilityState === 'hidden') { self.save(); }
+			});
+		}
+
+		this.detach();
+
+		for (var type in this.handlers) {
+			video.addEventListener(type, this.handlers[type]);
+		}
+
+		this.attached_video = video;
+	},
+
+	detach: function () {
+		if (!this.attached_video || !this.handlers) { return; }
+
+		for (var type in this.handlers) {
+			this.attached_video.removeEventListener(type, this.handlers[type]);
+		}
+
+		this.attached_video = null;
+	},
+
+	/*--------------------------------------------------------------
+	# TRACKING
+	----------------------------------------------------------------
+		Only the distance between two consecutive time updates counts
+		as watched, so seeking, ads and paused players add nothing.
+	--------------------------------------------------------------*/
+	track: function () {
+		if (!this.enabled()) { return; }
+
+		var video = this.attached_video;
+
+		if (!video || !this.duration() || this.adShowing()) {
+			this.last_time = null;
+
+			return;
+		}
+
+		this.syncVideoId();
+
+		var previous = this.last_time,
+			time = video.currentTime;
+
+		this.last_time = time;
+
+		if (previous === null || video.paused || video.seeking) { return; }
+
+		var step = time - previous,
+			limit = 5 * Math.max(1, video.playbackRate || 1);
+
+		if (step <= 0 || step > limit) { return; }
+
+		if (this.add(previous, time)) {
+			this.dirty = true;
+
+			this.scheduleSave();
+		}
+	},
+
+	add: function (start, end) {
+		var segments = this.segments,
+			gap = this.MERGE_GAP,
+			from = Math.max(0, Math.round(start * 10) / 10),
+			to = Math.max(from, Math.round(end * 10) / 10),
+			first = 0,
+			last = 0;
+
+		while (first < segments.length && segments[first][1] + gap < from) {
+			first++;
+		}
+
+		last = first;
+
+		while (last < segments.length && segments[last][0] - gap <= to) {
+			from = Math.min(from, segments[last][0]);
+			to = Math.max(to, segments[last][1]);
+			last++;
+		}
+
+		if (last === first + 1 && segments[first][0] === from && segments[first][1] === to) { return false; }
+
+		segments.splice(first, last - first, [from, to]);
+
+		return true;
+	},
+
+	sanitize: function (segments) {
+		var result = [];
+
+		if (!Array.isArray(segments)) { return result; }
+
+		for (var i = 0, l = segments.length; i < l; i++) {
+			var segment = segments[i];
+
+			if (!Array.isArray(segment) || segment.length !== 2) { continue; }
+
+			var from = Number(segment[0]),
+				to = Number(segment[1]);
+
+			if (!isFinite(from) || !isFinite(to) || from < 0 || to <= from) { continue; }
+
+			result.push([from, to]);
+		}
+
+		result.sort(function (a, b) { return a[0] - b[0]; });
+
+		return result;
+	},
+
+	/*--------------------------------------------------------------
+	# STORAGE
+	--------------------------------------------------------------*/
+	load: function (video_id) {
+		if (video_id === this.video_id) { return; }
+
+		this.save();
+
+		var store = ImprovedTube.storage[this.STORAGE_KEY],
+			entry = store && typeof store === 'object' ? store[video_id] : null;
+
+		this.video_id = video_id;
+		this.last_time = null;
+		this.dirty = false;
+		this.segments = this.sanitize(entry && entry.s);
+	},
+
+	scheduleSave: function () {
+		if (this.save_timer) { return; }
+
+		var self = this;
+
+		this.save_timer = setTimeout(function () { self.save(); }, this.SAVE_DELAY);
+	},
+
+	save: function () {
+		clearTimeout(this.save_timer);
+
+		this.save_timer = null;
+
+		if (!this.dirty || !this.video_id) { return; }
+
+		this.dirty = false;
+
+		var store = ImprovedTube.storage[this.STORAGE_KEY];
+
+		if (!store || typeof store !== 'object') {
+			store = {};
+
+			ImprovedTube.storage[this.STORAGE_KEY] = store;
+		}
+
+		if (this.segments.length) {
+			store[this.video_id] = { u: Date.now(), s: this.segments };
+		} else {
+			delete store[this.video_id];
+		}
+
+		var ids = Object.keys(store);
+
+		if (ids.length > this.MAX_VIDEOS) {
+			ids.sort(function (a, b) { return ((store[a] && store[a].u) || 0) - ((store[b] && store[b].u) || 0); });
+
+			for (var i = 0, l = ids.length - this.MAX_VIDEOS; i < l; i++) {
+				delete store[ids[i]];
+			}
+		}
+
+		ImprovedTube.messages.send({
+			action: 'set',
+			key: this.STORAGE_KEY,
+			value: store
+		});
+	},
+
+	/*--------------------------------------------------------------
+	# RENDERING
+	--------------------------------------------------------------*/
+	render: function () {
+		var player = ImprovedTube.elements.player,
+			bar = player && player.querySelector('.ytp-progress-bar'),
+			duration = this.duration();
+
+		// While an ad runs the bar shows the ad, not the video.
+		if (!bar || !duration || !this.segments.length || this.adShowing()) {
+			this.clear();
+
+			return;
+		}
+
+		var bar_rect = bar.getBoundingClientRect();
+
+		if (!bar_rect.width) { return; }
+
+		// One list per chapter, so every chapter maps to its own slice of the video.
+		var lists = bar.querySelectorAll('.ytp-progress-list');
+
+		if (!lists.length) {
+			this.paint(bar, bar_rect, duration);
+		} else {
+			for (var i = 0, l = lists.length; i < l; i++) {
+				this.paint(lists[i], bar_rect, duration);
+			}
+		}
+	},
+
+	paint: function (list, bar_rect, duration) {
+		var rect = list.getBoundingClientRect();
+
+		if (!rect.width) { return; }
+
+		var layer = list.querySelector(':scope > .it-watched-segments');
+
+		if (!layer) {
+			layer = document.createElement('div');
+			layer.className = 'it-watched-segments';
+
+			list.insertBefore(layer, list.firstChild);
+		}
+
+		var from = (rect.left - bar_rect.left) / bar_rect.width * duration,
+			span = rect.width / bar_rect.width * duration,
+			count = 0;
+
+		for (var i = 0, l = this.segments.length; i < l; i++) {
+			var start = Math.max(this.segments[i][0], from),
+				end = Math.min(this.segments[i][1], from + span);
+
+			if (end <= start) { continue; }
+
+			var element = layer.children[count];
+
+			if (!element) {
+				element = document.createElement('div');
+				element.className = 'it-watched-segment';
+
+				layer.appendChild(element);
+			}
+
+			element.style.left = (start - from) / span * 100 + '%';
+			element.style.width = (end - start) / span * 100 + '%';
+
+			count++;
+		}
+
+		while (layer.children.length > count) {
+			layer.lastChild.remove();
+		}
+	},
+
+	clear: function () {
+		var layers = document.querySelectorAll('.it-watched-segments');
+
+		for (var i = 0, l = layers.length; i < l; i++) {
+			layers[i].remove();
+		}
+	}
+};

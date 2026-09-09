@@ -261,6 +261,12 @@ extension.skeleton.main.layers.section.appearance.on.click.player = {
 					text: 'hideProgressBarPreview',
 					storage: 'player_hide_progress_preview',
 				},
+				player_watched_segments: {
+					component: 'switch',
+					text: 'showWatchedSectionsOnSeekBar',
+					storage: 'player_watched_segments',
+					tags: 'progress,seek,bar,history,watched',
+				},
 				player_hide_controls_options: {
 					component: "button",
 					text: "hidePlayerControlsBarButtons",
