@@ -160,6 +160,17 @@ html[it-thumbnails-hide='true'] ytd-watch-next-secondary-results-renderer ytd-pl
 html[it-livechat='hidden'] ytd-live-chat-frame#chat {
 	  display: none !important;
 }
+
+/* #3664 - In theatre mode YouTube reparents the live chat into
+   #panels-full-bleed-container. Hiding only ytd-live-chat-frame#chat leaves
+   this container reserving its width, so the theatre player stays offset as
+   if the sidebar were still present. Collapse the container when the live
+   chat is the panel it hosts, while leaving any engagement panel the user
+   explicitly opened (transcript, chapters, ...) untouched. */
+html[it-livechat='hidden'] ytd-watch-flexy[theater] #panels-full-bleed-container:has(ytd-live-chat-frame#chat):not(:has(ytd-engagement-panel-section-list-renderer[visibility='ENGAGEMENT_PANEL_VISIBILITY_EXPANDED'])) {
+	display: none !important;
+}
+
 html[it-livechat='collapsed'] #chat-container:not([it-activated])::before {
 	content: 'Show live chat' !important;
 }
