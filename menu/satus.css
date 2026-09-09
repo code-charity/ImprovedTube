@@ -4,6 +4,12 @@
 *[data-value][data-value="false"] {margin-bottom: 0; margin-top: 0; transition: margin 0.14s linear !important;}
 *[data-value][data-value="true"] {margin-bottom: -4.5px !important; margin-top: -3.5px; transition: margin 0.2s linear !important;}
 
+/* Prevent toggle switches from being shrunk by the universal data-value rule */
+.satus-switch[data-value] {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
 .satus-button--general, .satus-button--appearance, .satus-button--player {
 	margin-left: 9px !important;
 	margin-right: -18px !important;
