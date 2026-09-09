@@ -285,11 +285,29 @@ html[it-player-show-cards-on-mouse-hover='true'] .html5-video-player:hover .ytp-
 }
 
 /*--------------------------------------------------------------
-# HIDE "SCROLL FOR DETAILS"
+# Disable fullscreen scrolling  (formerly HIDE "SCROLL FOR DETAILS" - To-Do:  remove the word Details from the translations )
 --------------------------------------------------------------*/
 
 html[it-hide-scroll-for-details='true'] button.ytp-fullerscreen-edu-button {
 	display: none !important;
+}
+
+html[it-hide-scroll-for-details='true']:has(ytd-watch-flexy[fullscreen]),
+html[it-hide-scroll-for-details='true']:has(ytd-app[player-fullscreen_]),
+html[it-hide-scroll-for-details='true']:has(.html5-video-player.ytp-fullscreen) {
+	overflow: hidden !important;
+	overscroll-behavior: none !important;
+}
+
+html[it-hide-scroll-for-details='true']:has(ytd-watch-flexy[fullscreen]) body,
+html[it-hide-scroll-for-details='true']:has(ytd-app[player-fullscreen_]) body,
+html[it-hide-scroll-for-details='true']:has(.html5-video-player.ytp-fullscreen) body,
+html[it-hide-scroll-for-details='true'] ytd-app[player-fullscreen_],
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen],
+html[it-hide-scroll-for-details='true'] ytd-watch-flexy[fullscreen] #columns {
+	overflow: hidden !important;
+	overscroll-behavior: none !important;
+	max-height: 100vh !important;
 }
 
 html[it-hide-scroll-for-details='true'] ytd-app[scrolling_] {
@@ -706,18 +724,6 @@ html[data-page-type=video][it-hide-progress-preview='true'] .ytp-chapter-hover-c
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
-}
-
-/*--------------------------------------------------------------
-# HIDE "SCROLL FOR DETAILS"
---------------------------------------------------------------*/
-
-html[it-hide-scroll-for-details='true'] button.ytp-fullerscreen-edu-button {
-	display: none !important;
-}
-
-html[it-hide-scroll-for-details='true'] ytd-app[scrolling_] {
-	overflow: hidden !important;
 }
 
 /*--------------------------------------------------------------

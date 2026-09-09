@@ -754,7 +754,7 @@
     "message": "Hide right buttons"
   },
   "hideScrollForDetails": {
-    "message": "Hide «Scroll for details»"
+    "message": "Disable fullscreen scrolling"
   },
   "hideSkipOverlay": {
     "message": "Hide 5 second skip animation"
